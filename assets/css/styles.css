@@ -1,22 +1,22 @@
-/* root.css */
+/* ROOT */
 :root {
-    /* ── Backgrounds ── */
+    /*  bg  */
     --page-bg:       #F7F7F7;
     --surface-bg:    #FFFFFF;
     --input-bg:      #FFFFFF;
 
-    /* ── Text ── */
+    /*  txt  */
     --prim-txt:      #111111;
     --sec-txt:       #2D2D2D;
     --muted-txt:     #5A5A5A;
     --inv-txt:       #FFFFFF;
 
-    /* ── Borders ── */
+    /*  borders  */
     --btn-brdr:      #A63612;
     --input-brdr:    #7A7A7A;
     --divider:       #D8D8D8;
 
-    /* ── Interactive ── */
+    /*  interactive  */
     --btn-bg:        #C94A17;
     --btn-hover:     #A63612;
     --btn-txt:       #FFFFFF;
@@ -24,19 +24,19 @@
     --link:          #8B2500;
     --focus-ring:    #FF8A3D;
 
-    /* ── Accents ── */
+    /*  accents  */
     --accent-bg:     #FFF1E8;
     --accent-brdr:   #C94A17;
 
     --badge-bg:      #FFE0CC;
     --badge-txt:     #5A1E00;
 
-    /* ── Status ── */
+    /*  status  */
     --ok:            #1B5E20;
     --warn:          #B96A00;
     --err:           #B00020;
 
-    /* ── Typography ── */
+    /*  typography  */
     --fs-body:       1.25rem;  /* 20px */
     --fs-xsm:         0.875rem;  /* 14px */
     --fs-sm:         1.125rem; /* 18px */
