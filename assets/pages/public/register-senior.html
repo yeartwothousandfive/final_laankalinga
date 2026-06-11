@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Registration - Laankalinga</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="register-header">
+            <a href="index.html" class="logo-link">
+                <img src="../../images/logo.png" alt="Laankalinga Logo" class="logo">
+            </a>
+            <h1>Senior Resident Registration</h1>
+            <p>Complete your profile to receive personalized care services</p>
+        </header>
+
+        <nav class="account-type-nav">
+            <p>Need a different account type?</p>
+            <ul>
+                <li><a href="register-family.html">Family Representative</a></li>
+                <li><a href="register-volunteer.html">Volunteer</a></li>
+                <li><a href="register-staff.html">Staff Member</a></li>
+            </ul>
+        </nav>
+
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <!-- Step 1: Personal Information -->
+            <fieldset class="form-step">
+                <legend>Personal Information</legend>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="senior-profile-pic">Profile Picture</label>
+                        <input type="file" id="senior-profile-pic" name="profile_pic" accept="image/*">
+                        <small>Upload a clear, recent photo (JPG or PNG)</small>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-first-name">First Name <span class="required">*</span></label>
+                        <input type="text" id="senior-first-name" name="first_name" required placeholder="Enter first name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-middle-name">Middle Name</label>
+                        <input type="text" id="senior-middle-name" name="middle_name" placeholder="Enter middle name">
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-last-name">Last Name <span class="required">*</span></label>
+                        <input type="text" id="senior-last-name" name="last_name" required placeholder="Enter last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-suffix">Suffix</label>
+                        <select id="senior-suffix" name="suffix">
+                            <option value="">None</option>
+                            <option value="jr">Jr.</option>
+                            <option value="sr">Sr.</option>
+                            <option value="ii">II</option>
+                            <option value="iii">III</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-dob">Date of Birth <span class="required">*</span></label>
+                        <input type="date" id="senior-dob" name="date_of_birth" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-place-of-birth">Place of Birth</label>
+                        <input type="text" id="senior-place-of-birth" name="place_of_birth" placeholder="City/Municipality, Province">
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-gender">Sex <span class="required">*</span></label>
+                        <select id="senior-gender" name="gender" required>
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-civil-status">Civil Status <span class="required">*</span></label>
+                        <select id="senior-civil-status" name="civil_status" required>
+                            <option value="">Select</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="widowed">Widowed / Balo</option>
+                            <option value="separated">Separated</option>
+                            <option value="annulled">Annulled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-philsys-id">PhilSys ID / National ID Number <span class="required">*</span></label>
+                        <input type="text" id="senior-philsys-id" name="philsys_id" required placeholder="Enter PhilSys Reference Number">
+                        <small>Used for identity and benefits verification</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-osca-id">OSCA ID Number</label>
+                        <input type="text" id="senior-osca-id" name="osca_id" placeholder="Office for Senior Citizens Affairs ID">
+                        <small>Issued by your city/municipal OSCA office</small>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-email">Email Address</label>
+                        <input type="email" id="senior-email" name="email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-phone">Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="senior-phone" name="phone" required placeholder="09XX XXX XXXX" pattern="09\d{2} \d{3} \d{4}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-address">Home Address <span class="required">*</span></label>
+                    <textarea id="senior-address" name="address" rows="2" required placeholder="House/Unit No., Street, Barangay, City/Municipality, Province, ZIP Code"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-region">Region <span class="required">*</span></label>
+                    <select id="senior-region" name="region" required>
+                        <option value="">Select region</option>
+                        <option value="ncr">NCR – National Capital Region</option>
+                        <option value="car">CAR – Cordillera Administrative Region</option>
+                        <option value="r1">Region I – Ilocos Region</option>
+                        <option value="r2">Region II – Cagayan Valley</option>
+                        <option value="r3">Region III – Central Luzon</option>
+                        <option value="r4a">Region IV-A – CALABARZON</option>
+                        <option value="r4b">Region IV-B – MIMAROPA</option>
+                        <option value="r5">Region V – Bicol Region</option>
+                        <option value="r6">Region VI – Western Visayas</option>
+                        <option value="r7">Region VII – Central Visayas</option>
+                        <option value="r8">Region VIII – Eastern Visayas</option>
+                        <option value="r9">Region IX – Zamboanga Peninsula</option>
+                        <option value="r10">Region X – Northern Mindanao</option>
+                        <option value="r11">Region XI – Davao Region</option>
+                        <option value="r12">Region XII – SOCCSKSARGEN</option>
+                        <option value="r13">Region XIII – Caraga</option>
+                        <option value="barmm">BARMM – Bangsamoro Autonomous Region in Muslim Mindanao</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <!-- Step 2: Emergency Contact -->
+            <fieldset class="form-step">
+                <legend>Emergency Contact Information</legend>
+
+                <h3>Primary Contact</h3>
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-primary-contact-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="senior-primary-contact-name" name="primary_contact_name" required placeholder="Enter full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-primary-contact-relationship">Relationship <span class="required">*</span></label>
+                        <select id="senior-primary-contact-relationship" name="primary_contact_relationship" required>
+                            <option value="">Select relationship</option>
+                            <option value="child">Anak / Child</option>
+                            <option value="spouse">Asawa / Spouse</option>
+                            <option value="sibling">Kapatid / Sibling</option>
+                            <option value="grandchild">Apo / Grandchild</option>
+                            <option value="nephew-niece">Pamangkin / Nephew or Niece</option>
+                            <option value="relative">Kamag-anak / Relative</option>
+                            <option value="friend">Kaibigan / Friend</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-primary-contact-phone">Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="senior-primary-contact-phone" name="primary_contact_phone" required placeholder="09XX XXX XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-primary-contact-email">Email Address</label>
+                        <input type="email" id="senior-primary-contact-email" name="primary_contact_email" placeholder="contact@email.com">
+                    </div>
+                </div>
+
+                <h3>Secondary Contact</h3>
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-secondary-contact-name">Full Name</label>
+                        <input type="text" id="senior-secondary-contact-name" name="secondary_contact_name" placeholder="Enter full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-secondary-contact-relationship">Relationship</label>
+                        <select id="senior-secondary-contact-relationship" name="secondary_contact_relationship">
+                            <option value="">Select relationship</option>
+                            <option value="child">Anak / Child</option>
+                            <option value="spouse">Asawa / Spouse</option>
+                            <option value="sibling">Kapatid / Sibling</option>
+                            <option value="grandchild">Apo / Grandchild</option>
+                            <option value="nephew-niece">Pamangkin / Nephew or Niece</option>
+                            <option value="relative">Kamag-anak / Relative</option>
+                            <option value="friend">Kaibigan / Friend</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-secondary-contact-phone">Mobile Number</label>
+                        <input type="tel" id="senior-secondary-contact-phone" name="secondary_contact_phone" placeholder="09XX XXX XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-secondary-contact-email">Email Address</label>
+                        <input type="email" id="senior-secondary-contact-email" name="secondary_contact_email" placeholder="contact@email.com">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Step 3: Health Profile -->
+            <fieldset class="form-step">
+                <legend>Health Profile</legend>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-physician-name">Primary Physician / Attending Doctor</label>
+                        <input type="text" id="senior-physician-name" name="physician_name" placeholder="Dr. Full Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-physician-phone">Doctor's Mobile / Clinic Number</label>
+                        <input type="tel" id="senior-physician-phone" name="physician_phone" placeholder="09XX XXX XXXX or (02) XXXX XXXX">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-physician-hospital">Hospital / Clinic Affiliation</label>
+                    <input type="text" id="senior-physician-hospital" name="physician_hospital" placeholder="e.g., Philippine General Hospital, Makati Medical Center">
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-blood-type">Blood Type</label>
+                    <select id="senior-blood-type" name="blood_type">
+                        <option value="">Select blood type</option>
+                        <option value="a+">A+</option>
+                        <option value="a-">A-</option>
+                        <option value="b+">B+</option>
+                        <option value="b-">B-</option>
+                        <option value="ab+">AB+</option>
+                        <option value="ab-">AB-</option>
+                        <option value="o+">O+</option>
+                        <option value="o-">O-</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-chronic-conditions">Chronic Conditions / Mga Sakit</label>
+                    <textarea id="senior-chronic-conditions" name="chronic_conditions" rows="3" placeholder="e.g., Diabetes (Diyabetis), Hypertension (Alta Presyon), Arthritis, Heart Disease (Sakit sa Puso), Stroke, COPD"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-allergies">Known Allergies <span class="tooltip-trigger">?</span></label>
+                    <textarea id="senior-allergies" name="allergies" rows="3" placeholder="List all known allergies to medications, foods, or other substances"></textarea>
+                    <span class="tooltip-text">Include all known allergies — this is critical for safe medication and meal management</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-medications">Current Medications / Gamot</label>
+                    <textarea id="senior-medications" name="medications" rows="4" placeholder="List all current medications with dosages (generic or brand name)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-pwd-status">PWD Status</label>
+                    <select id="senior-pwd-status" name="pwd_status">
+                        <option value="">Select if applicable</option>
+                        <option value="none">No disability</option>
+                        <option value="physical">Physical / Orthopedic</option>
+                        <option value="visual">Visual Impairment</option>
+                        <option value="hearing">Hearing / Deaf</option>
+                        <option value="speech">Speech / Language</option>
+                        <option value="psychosocial">Psychosocial / Mental Health</option>
+                        <option value="intellectual">Intellectual / Learning</option>
+                        <option value="chronic-illness">Chronic Illness</option>
+                        <option value="multiple">Multiple Disabilities</option>
+                    </select>
+                    <small>If registered as a PWD, please upload your PWD ID below</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-pwd-id-upload">Upload PWD ID (if applicable)</label>
+                    <input type="file" id="senior-pwd-id-upload" name="pwd_id_document" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+            </fieldset>
+
+            <!-- Step 4: Government Benefits & Insurance -->
+            <fieldset class="form-step">
+                <legend>Government Benefits &amp; Insurance</legend>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-philhealth">PhilHealth Member Number (PIN) <span class="required">*</span></label>
+                        <input type="text" id="senior-philhealth" name="philhealth_number" required placeholder="XXXX-XXXXXXXX-X">
+                        <small>Required for medical benefit coverage</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-philhealth-category">PhilHealth Membership Category</label>
+                        <select id="senior-philhealth-category" name="philhealth_category">
+                            <option value="">Select category</option>
+                            <option value="direct">Direct Contributor (employed/self-employed)</option>
+                            <option value="indirect">Indirect Contributor / Dependent</option>
+                            <option value="lifetime">Lifetime Member</option>
+                            <option value="indigent">Indigent / 4Ps Beneficiary</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-sss-gsis">SSS / GSIS Number</label>
+                        <input type="text" id="senior-sss-gsis" name="sss_gsis_number" placeholder="SSS: XX-XXXXXXX-X | GSIS: XXXX-XXXX">
+                        <small>SSS for private sector; GSIS for government retirees</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-pension-type">Pension / Retirement Benefit Type</label>
+                        <select id="senior-pension-type" name="pension_type">
+                            <option value="">Select if applicable</option>
+                            <option value="sss">SSS Pension</option>
+                            <option value="gsis">GSIS Pension</option>
+                            <option value="dswd">DSWD Social Pension (Indigent Senior)</option>
+                            <option value="private">Private Company Pension</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-private-insurance">Private Health Insurance Provider (if any)</label>
+                    <input type="text" id="senior-private-insurance" name="private_insurance_provider" placeholder="e.g., Maxicare, Medicard, Intellicare, Caritas Health">
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-policy-number">Insurance Policy Number</label>
+                    <input type="text" id="senior-policy-number" name="policy_number" placeholder="Found on your HMO card">
+                </div>
+            </fieldset>
+
+            <!-- Step 5: Care Preferences -->
+            <fieldset class="form-step">
+                <legend>Care Preferences</legend>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-language">Language / Dialect Preference <span class="required">*</span></label>
+                        <select id="senior-language" name="language_preference" required>
+                            <option value="">Select language</option>
+                            <option value="filipino">Filipino / Tagalog</option>
+                            <option value="english">English</option>
+                            <option value="cebuano">Cebuano / Bisaya</option>
+                            <option value="ilocano">Ilocano</option>
+                            <option value="hiligaynon">Hiligaynon / Ilonggo</option>
+                            <option value="waray">Waray</option>
+                            <option value="kapampangan">Kapampangan</option>
+                            <option value="bicolano">Bicolano</option>
+                            <option value="pangasinense">Pangasinense</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-religion">Religion / Relihiyon</label>
+                        <select id="senior-religion" name="religion">
+                            <option value="">Select if applicable</option>
+                            <option value="roman-catholic">Roman Catholic</option>
+                            <option value="iglesia-ni-cristo">Iglesia ni Cristo</option>
+                            <option value="born-again">Born Again / Evangelical</option>
+                            <option value="aglipayan">Aglipayan / Philippine Independent Church</option>
+                            <option value="islam">Islam</option>
+                            <option value="seventh-day-adventist">Seventh-Day Adventist</option>
+                            <option value="jehovah">Jehovah's Witness</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                        <small>Helps us accommodate religious observances and dietary needs</small>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="senior-mobility">Mobility Needs</label>
+                        <select id="senior-mobility" name="mobility_needs">
+                            <option value="">Select if applicable</option>
+                            <option value="none">Walang pangangailangan / None needed</option>
+                            <option value="walker">Walker / Tungkod</option>
+                            <option value="wheelchair">Wheelchair</option>
+                            <option value="cane">Cane / Baston</option>
+                            <option value="assisted-walking">Assisted walking</option>
+                            <option value="bedridden">Bedridden / Nakaratay</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senior-diet">Dietary Restrictions / Pagkain</label>
+                        <select id="senior-diet" name="diet_type">
+                            <option value="">Select if applicable</option>
+                            <option value="none">No restrictions</option>
+                            <option value="low-sodium">Low Sodium / Mababang Asin</option>
+                            <option value="diabetic">Diabetic Diet</option>
+                            <option value="soft-diet">Soft / Pureed Diet</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="halal">Halal</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senior-diet-notes">Additional Dietary Notes</label>
+                    <textarea id="senior-diet-notes" name="diet_notes" rows="2" placeholder="e.g., allergic to shellfish, prefers rice over bread, no pork"></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Terms and Conditions -->
+            <fieldset class="form-step">
+                <legend>Terms and Conditions</legend>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms_accepted" required>
+                        <span>I have read and agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="accuracy_confirmed" required>
+                        <span>I confirm that all information provided is accurate and complete <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="data_privacy_consent" required>
+                        <span>I consent to the collection and processing of my personal and health data in accordance with the <strong>Data Privacy Act of 2012 (R.A. 10173)</strong> and the facility's Privacy Notice <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="senior_citizen_act_acknowledged" required>
+                        <span>I understand my rights and entitlements as a senior citizen under the <strong>Expanded Senior Citizens Act of 2010 (R.A. 9994)</strong> <span class="required">*</span></span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create Senior Account</button>
+                <a href="login.html" class="btn btn-secondary">Already have an account? Login</a>
+            </div>
+        </form>
+
+        <footer class="form-footer">
+            <p>&copy; 2026 Laankalinga. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Support</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>

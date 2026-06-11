@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Representative Registration - Laankalinga</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="register-header">
+            <a href="index.html" class="logo-link">
+                <img src="../../images/logo.png" alt="Laankalinga Logo" class="logo">
+            </a>
+            <h1>Family Representative Registration</h1>
+            <p>Connect with your loved one and manage their care</p>
+        </header>
+
+        <nav class="account-type-nav">
+            <p>Need a different account type?</p>
+            <ul>
+                <li><a href="register-senior.html">Senior Resident</a></li>
+                <li><a href="register-volunteer.html">Volunteer</a></li>
+                <li><a href="register-staff.html">Staff Member</a></li>
+            </ul>
+        </nav>
+
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <!-- Step 1: Personal Information -->
+            <fieldset class="form-step">
+                <legend>Personal Information</legend>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="family-first-name">First Name <span class="required">*</span></label>
+                        <input type="text" id="family-first-name" name="first_name" required placeholder="Enter first name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="family-middle-name">Middle Name</label>
+                        <input type="text" id="family-middle-name" name="middle_name" placeholder="Enter middle name">
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="family-last-name">Last Name <span class="required">*</span></label>
+                        <input type="text" id="family-last-name" name="last_name" required placeholder="Enter last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="family-suffix">Suffix</label>
+                        <select id="family-suffix" name="suffix">
+                            <option value="">None</option>
+                            <option value="jr">Jr.</option>
+                            <option value="sr">Sr.</option>
+                            <option value="ii">II</option>
+                            <option value="iii">III</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="family-email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="family-email" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="family-phone">Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="family-phone" name="phone" required placeholder="09XX XXX XXXX" pattern="09\d{2} \d{3} \d{4}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-alt-phone">Alternative / Landline Number</label>
+                    <input type="tel" id="family-alt-phone" name="alt_phone" placeholder="e.g., (02) XXXX XXXX or 09XX XXX XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="family-address">Home Address <span class="required">*</span></label>
+                    <textarea id="family-address" name="address" rows="2" required placeholder="House/Unit No., Street, Barangay, City/Municipality, Province, ZIP Code"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-region">Region <span class="required">*</span></label>
+                    <select id="family-region" name="region" required>
+                        <option value="">Select region</option>
+                        <option value="ncr">NCR – National Capital Region</option>
+                        <option value="car">CAR – Cordillera Administrative Region</option>
+                        <option value="r1">Region I – Ilocos Region</option>
+                        <option value="r2">Region II – Cagayan Valley</option>
+                        <option value="r3">Region III – Central Luzon</option>
+                        <option value="r4a">Region IV-A – CALABARZON</option>
+                        <option value="r4b">Region IV-B – MIMAROPA</option>
+                        <option value="r5">Region V – Bicol Region</option>
+                        <option value="r6">Region VI – Western Visayas</option>
+                        <option value="r7">Region VII – Central Visayas</option>
+                        <option value="r8">Region VIII – Eastern Visayas</option>
+                        <option value="r9">Region IX – Zamboanga Peninsula</option>
+                        <option value="r10">Region X – Northern Mindanao</option>
+                        <option value="r11">Region XI – Davao Region</option>
+                        <option value="r12">Region XII – SOCCSKSARGEN</option>
+                        <option value="r13">Region XIII – Caraga</option>
+                        <option value="barmm">BARMM – Bangsamoro Autonomous Region in Muslim Mindanao</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-philsys-id">PhilSys ID / National ID Number</label>
+                    <input type="text" id="family-philsys-id" name="philsys_id" placeholder="Enter PhilSys Reference Number">
+                </div>
+            </fieldset>
+
+            <!-- Step 2: Relationship Information -->
+            <fieldset class="form-step">
+                <legend>Relationship Information</legend>
+
+                <div class="form-row two-column">
+                    <div class="form-group">
+                        <label for="family-relationship">Relationship to Senior <span class="required">*</span></label>
+                        <select id="family-relationship" name="relationship" required>
+                            <option value="">Select relationship</option>
+                            <option value="child">Anak / Child</option>
+                            <option value="spouse">Asawa / Spouse</option>
+                            <option value="sibling">Kapatid / Sibling</option>
+                            <option value="parent">Magulang / Parent</option>
+                            <option value="grandchild">Apo / Grandchild</option>
+                            <option value="nephew-niece">Pamangkin / Nephew or Niece</option>
+                            <option value="legal-guardian">Legal Guardian / Court-Appointed</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="family-decision-maker">Primary Decision Maker? <span class="tooltip-trigger">?</span></label>
+                        <select id="family-decision-maker" name="is_primary_decision_maker" required>
+                            <option value="">Select option</option>
+                            <option value="yes">Yes – I am the primary decision maker</option>
+                            <option value="no">No – I share decision-making responsibilities</option>
+                        </select>
+                        <span class="tooltip-text">The primary decision maker has final authority on care decisions for the senior resident</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-verification-doc">Upload Relationship Verification Document <span class="required">*</span></label>
+                    <input type="file" id="family-verification-doc" name="verification_document" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <small>Upload any of the following: PSA Birth Certificate, PSA Marriage Certificate, Court Order (for legal guardians), Special Power of Attorney (SPA) notarized in the Philippines, or DSWD-issued guardianship certificate</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-spa-doc">Special Power of Attorney (SPA) — if applicable</label>
+                    <input type="file" id="family-spa-doc" name="spa_document" accept=".pdf,.jpg,.jpeg,.png">
+                    <small>Required if you are acting on behalf of another authorized family member. Must be notarized or consularized (for OFW representatives).</small>
+                </div>
+            </fieldset>
+
+            <!-- Step 3: Senior Selection/Addition -->
+            <fieldset class="form-step">
+                <legend>Link to Senior(s)</legend>
+
+                <div class="form-group">
+                    <label>Search for Existing Senior <span class="tooltip-trigger">?</span></label>
+                    <div class="search-box">
+                        <input type="text" id="senior-search" name="senior_search" placeholder="Enter senior's full name or date of birth">
+                        <button type="button" class="btn btn-search">Search</button>
+                    </div>
+                    <span class="tooltip-text">If the senior is already registered in our system, search for them here</span>
+
+                    <div id="search-results" class="search-results">
+                        <p class="search-placeholder">Enter search criteria above to find existing seniors</p>
+                    </div>
+                </div>
+
+                <div class="form-divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Add New Senior Profile</label>
+                    <p>If the senior cannot register on their own, you may create their profile on their behalf.</p>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='register-senior.html?added_by=family'">Create New Senior Profile</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-authorized-seniors">Authorized Senior(s) <span class="required">*</span></label>
+                    <select id="family-authorized-seniors" name="authorized_seniors" multiple required>
+                        <option value="">Select senior(s) you are authorized to represent</option>
+                        <!-- Options will be populated based on search or new registration -->
+                    </select>
+                    <small>Hold Ctrl (Windows) or Command (Mac) to select multiple seniors</small>
+                </div>
+            </fieldset>
+
+            <!-- Step 4: Communication Preferences -->
+            <fieldset class="form-step">
+                <legend>Communication Preferences</legend>
+
+                <div class="form-group">
+                    <label for="family-contact-method">Preferred Contact Method <span class="required">*</span></label>
+                    <select id="family-contact-method" name="preferred_contact_method" required>
+                        <option value="">Select preferred method</option>
+                        <option value="sms">SMS / Text Message</option>
+                        <option value="viber">Viber</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="email">Email</option>
+                        <option value="call">Phone Call</option>
+                        <option value="all">All of the above</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-update-frequency">Frequency of Updates <span class="required">*</span></label>
+                    <select id="family-update-frequency" name="update_frequency" required>
+                        <option value="">Select frequency</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="bi-weekly">Bi-weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="as-needed">Only when there are important updates</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="emergency_notifications" value="yes">
+                        <span>Receive immediate notifications for emergency situations</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="care_plan_updates" value="yes">
+                        <span>Receive notifications when care plans are updated</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="family-ofw-status">Are you an Overseas Filipino Worker (OFW) or residing abroad?</label>
+                    <select id="family-ofw-status" name="ofw_status">
+                        <option value="">Select option</option>
+                        <option value="no">No, I am based in the Philippines</option>
+                        <option value="ofw">Yes, I am an OFW</option>
+                        <option value="abroad">Yes, I am a Filipino residing abroad</option>
+                    </select>
+                    <small>OFW/abroad-based representatives may be required to submit consularized documents and will receive updates via email or messaging apps.</small>
+                </div>
+            </fieldset>
+
+            <!-- Step 5: Terms and Conditions -->
+            <fieldset class="form-step">
+                <legend>Terms and Conditions</legend>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms_accepted" required>
+                        <span>I have read and agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="accuracy_confirmed" required>
+                        <span>I confirm that all information provided is accurate and complete. I understand that false information may be used as grounds for account termination and legal action under applicable Philippine laws. <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="data_privacy_consent" required>
+                        <span>I consent to the collection and processing of my personal data and that of the senior resident in accordance with the <strong>Data Privacy Act of 2012 (R.A. 10173)</strong> and the facility's Privacy Notice. <span class="required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="authorization_confirmed" required>
+                        <span>I confirm that I am legally authorized to act as a representative for the selected senior(s), and I acknowledge my responsibilities under the <strong>Expanded Senior Citizens Act of 2010 (R.A. 9994)</strong> and related regulations. <span class="required">*</span></span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create Family Account</button>
+                <a href="login.html" class="btn btn-secondary">Already have an account? Login</a>
+            </div>
+        </form>
+
+        <footer class="form-footer">
+            <p>&copy; 2026 Laankalinga. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Support</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
