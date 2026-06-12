@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Appointments - Laankalinga</title>
+</head>
+<body>
+    <header>
+        <h1>Manage Appointments</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a href="seniors.html">Seniors List</a></li>
+                <li><a href="flagged.html">Flagged Cases</a></li>
+                <li><a href="reports.html">Reports & Events</a></li>
+                <li><a href="../public/login.html">Logout</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <section id="pending-requests">
+            <h2>Pending Service Requests</h2>
+            <p>Review appointment requests from senior residents and family members.</p>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Date Requested</th>
+                        <th>Senior Name</th>
+                        <th>Service Type</th>
+                        <th>Preferred Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>June 10, 2026</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>General Checkup</td>
+                        <td>June 15, 2026</td>
+                        <td>
+                            <form action="#" method="POST">
+                                <button type="submit" name="action" value="approve">Approve</button>
+                                <button type="submit" name="action" value="reject">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>June 11, 2026</td>
+                        <td>Maria Santos</td>
+                        <td>Blood Pressure Monitoring</td>
+                        <td>June 18, 2026</td>
+                        <td>
+                            <form action="#" method="POST">
+                                <button type="submit" name="action" value="approve">Approve</button>
+                                <button type="submit" name="action" value="reject">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <br>
+
+        <section id="assign-volunteers">
+            <h2>Approved Appointments (Requires Assignment)</h2>
+            <p>Assign available volunteers or caregivers to scheduled visits. Email notifications will be automatically sent upon assignment.</p>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Senior Name</th>
+                        <th>Location</th>
+                        <th>Assign Volunteer/Caregiver</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>June 14, 2026 - 09:00 AM</td>
+                        <td>Pedro Reyes</td>
+                        <td>123 Sampaguita St.</td>
+                        <td>
+                            <select name="assigned_volunteer">
+                                <option value="">-- Select Personnel --</option>
+                                <option value="vol1">Ana Garcia (Volunteer)</option>
+                                <option value="vol2">Luis Torres (Volunteer)</option>
+                                <option value="staff1">Nurse Maria (Staff)</option>
+                            </select>
+                        </td>
+                        <td><button type="button">Confirm Assignment</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2026 Laankalinga. All rights reserved.</p>
+    </footer>
+</body>
+</html>

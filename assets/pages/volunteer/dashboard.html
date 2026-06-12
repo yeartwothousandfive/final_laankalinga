@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Dashboard - Laankalinga</title>
+</head>
+<body>
+    <header>
+        <h1>Volunteer Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="availability.html">Set Availability</a></li>
+                <li><a href="../public/login.html">Logout</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <section id="welcome-overview">
+            <h2>Welcome Back!</h2>
+            <p>Review your assigned visits and manage your schedule to assist our senior residents.</p>
+        </section>
+        
+        <section id="visits-today">
+            <h3>Assigned Visits Today</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Senior Name</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:00 AM</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>123 Sampaguita St., Brgy. Pag-asa, Quezon City</td>
+                        <td><a href="visit-log.html"><button type="button">View Details & Log Visit</button></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <br>
+        <section id="visits-this-week">
+            <h3>Upcoming Visits This Week</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Senior Name</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>June 15, 2026</td>
+                        <td>02:00 PM</td>
+                        <td>Maria Santos</td>
+                        <td>456 Mabini St., Brgy. Pag-asa, Quezon City</td>
+                        <td><button type="button">View Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>June 17, 2026</td>
+                        <td>09:00 AM</td>
+                        <td>Pedro Reyes</td>
+                        <td>789 Rizal Ave., Brgy. Pag-asa, Quezon City</td>
+                        <td><button type="button">View Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; 2026 Laankalinga. All rights reserved.</p>
+    </footer>
+</body>
+</html>
