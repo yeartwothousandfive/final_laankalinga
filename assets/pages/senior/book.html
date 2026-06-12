@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Healthcare Appointment Booking - LaanKalinga</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Book Your Healthcare Appointment</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="book.html">Book Appointment</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="../public/index.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="booking-form">
+            <h2>Step-by-Step Appointment Booking</h2>
+            <p><strong>Please fill out all fields marked with an asterisk (*)</strong></p>
+            <p><small>This form usually takes 5 10 minutes to complete.</small></p>
+            <form action="#" method="POST">
+                <!-- SECTION 1: SERVICE SELECTION -->
+                <fieldset>
+                    <legend><h3>Step 1: What Service Do You Need?</h3></legend>
+                    <p>
+                        <label for="service-type"><strong>Select the service you need <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Choose one option that matches your reason for visiting.</small></p>
+                    <select id="service-type" name="service-type" required>
+                        <option value="">-- Please choose a service --</option>
+                        <option value="medical-checkup">General Health Checkup (Full physical exam)</option>
+                        <option value="blood-pressure-monitoring">Blood Pressure Check</option>
+                        <option value="diabetes-screening">Diabetes and Blood Sugar Check</option>
+                        <option value="physical-therapy">Physical Therapy (Help with movement or pain)</option>
+                        <option value="dental-care">Dental Care (Teeth and gum check)</option>
+                        <option value="vision-screening">Eye Exam (Vision and eye health)</option>
+                        <option value="vaccination">Vaccination (Free vaccine programs for seniors)</option>
+                        <option value="laboratory-test">Blood Work or Urine Test</option>
+                        <option value="health-consultation">Consultation with a Doctor</option>
+                        <option value="wellness-program">Senior Wellness Program</option>
+                        <option value="follow-up">Follow-up Visit (After previous treatment)</option>
+                    </select>
+                    <p style="margin-top: 20px;">
+                        <label for="location"><strong>Where do you want to go? <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Select the health center closest to you or easiest for you to reach.</small></p>
+                    <select id="location" name="location" required>
+                        <option value="">-- Please choose a location --</option>
+                        <option value="barangay-health-center">Barangay Health Center (Closest to your area)</option>
+                        <option value="rural-health-unit">Rural Health Unit (RHU)</option>
+                        <option value="municipal-health-center">Municipal Health Center</option>
+                        <option value="provincial-hospital">Provincial Hospital</option>
+                        <option value="district-hospital">District Hospital</option>
+                        <option value="metro-manila-ncr">Metro Manila Medical Facility (NCR)</option>
+                        <option value="visayas-cebu">Visayas Regional Medical Center (Cebu)</option>
+                        <option value="mindanao-davao">Mindanao Medical Center (Davao)</option>
+                        <option value="luzon-regions">Luzon Regional Hospital</option>
+                        <option value="mobile-service">Mobile Health Service (Health workers visit you at home)</option>
+                    </select>
+                </fieldset>
+                <!-- SECTION 2: SCHEDULE SELECTION -->
+                <fieldset>
+                    <legend><h3>Step 2: Choose Your Date and Time</h3></legend>
+                    <p>
+                        <label for="appointment-date"><strong>What date do you prefer? <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Most health centers are open Monday to Friday, 8 AM to 5 PM. Dates that are not available will be greyed out.</small></p>
+                    <input type="date" id="appointment-date" name="appointment-date" required>
+                    <p style="margin-top: 20px;">
+                        <label for="time-slot"><strong>What time works best for you? <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Pick a time that fits your schedule. If your preferred time is not available, you can pick a different date or time slot.</small></p>
+                    <select id="time-slot" name="time-slot" required>
+                        <option value="">-- Please choose a time --</option>
+                        <option value="08:00">8:00 AM (Early morning)</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="13:00">1:00 PM (After lunch)</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM (Late afternoon)</option>
+                    </select>
+                    <p><small>If you cannot find an available slot, you may walk in during quiet hours (usually 10 AM 12 PM or 3 PM 5 PM).</small></p>
+                </fieldset>
+                <!-- SECTION 3: PATIENT INFORMATION -->
+                <fieldset>
+                    <legend><h3>Step 3: Your Information</h3></legend>
+                    <p>
+                        <label for="patient-info"><strong>Full name of the person visiting <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Enter your name or the name of the senior you are booking for.</small></p>
+                    <input type="text" id="patient-info" name="patient-info" required>
+                    <p style="margin-top: 20px;">
+                        <label for="age"><strong>Age <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>How old is the person visiting?</small></p>
+                    <input type="number" id="age" name="age" min="60" max="120" required>
+                    <p style="margin-top: 20px;">
+                        <label for="guardian-info"><strong>Accompanying Person's Name (if applicable)</strong></label>
+                    </p>
+                    <p><small>If someone else is coming with you (family member, caregiver, etc.), enter their name here. Leave blank if you are coming alone.</small></p>
+                    <input type="text" id="guardian-info" name="guardian-info">
+                    <p style="margin-top: 20px;">
+                        <label for="contact-number"><strong>Contact Number (Mobile or Landline) <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Example: +63 912 345 6789 or (02) 1234 5678</small></p>
+                    <input type="tel" id="contact-number" name="contact-number" required>
+                    <p style="margin-top: 20px;">
+                        <label for="emergency-contact"><strong>Emergency Contact Number <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>A family member or trusted person we can reach if needed.</small></p>
+                    <input type="tel" id="emergency-contact" name="emergency-contact" required>
+                    <p style="margin-top: 20px;">
+                        <label for="preferred-contact"><strong>How should we contact you about your appointment? <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Choose how you prefer to receive appointment reminders and confirmations.</small></p>
+                    <select id="preferred-contact" name="preferred-contact" required>
+                        <option value="">-- Please choose --</option>
+                        <option value="sms">SMS Text Message</option>
+                        <option value="phone">Phone Call</option>
+                        <option value="email">Email</option>
+                    </select>
+                </fieldset>
+                <!-- SECTION 4: REASON & SPECIAL NEEDS -->
+                <fieldset>
+                    <legend><h3>Step 4: Tell Us More</h3></legend>
+                    <p>
+                        <label for="reason"><strong>Why are you visiting? <span aria-label="required">*</span></strong></label>
+                    </p>
+                    <p><small>Briefly describe what you need help with. Example: I need to check my blood pressure because I've been feeling dizzy.</small></p>
+                    <textarea id="reason" name="reason" rows="4" required></textarea>
+                    <p style="margin-top: 20px;">
+                        <label for="medications"><strong>Current Medications (Optional)</strong></label>
+                    </p>
+                    <p><small>List any medicines you are currently taking, if you know them. This helps the doctor. Example: Amlodipine 5mg daily, Metformin 500mg twice daily.</small></p>
+                    <textarea id="medications" name="medications" rows="3"></textarea>
+                    <p style="margin-top: 20px;">
+                        <label for="allergies"><strong>Any Drug Allergies? (Optional)</strong></label>
+                    </p>
+                    <p><small>Tell us if you are allergic to any medicines or substances. Leave blank if no known allergies.</small></p>
+                    <textarea id="allergies" name="allergies" rows="3"></textarea>
+                    <p style="margin-top: 20px;">
+                        <label for="special-needs"><strong>Do you need any special help? (Optional)</strong></label>
+                    </p>
+                    <p><small>Tell us if you need wheelchair access, transportation help, translation, hearing assistance, or any other support. Leave blank if not needed.</small></p>
+                    <textarea id="special-needs" name="special-needs" rows="3"></textarea>
+                </fieldset>
+                <!-- SUBMIT BUTTONS -->
+                <div class="form-actions" style="margin-top: 30px; margin-bottom: 30px;">
+                    <p>
+                        <button type="submit" style="font-size: 18px; padding: 15px 30px;">
+                            <strong>Confirm and Book Appointment</strong>
+                        </button>
+                    </p>
+                    <p>
+                        <button type="reset" style="font-size: 18px; padding: 15px 30px;">
+                            <strong>Clear and Start Over</strong>
+                        </button>
+                    </p>
+                </div>
+            </form>
+        </section>
+        <!-- BOOKING INFORMATION SECTION -->
+        <section id="booking-info">
+            <h2>What Happens After You Book?</h2>
+            
+            <h3>After Successful Booking</h3>
+            <ul>
+                <li>You will see a confirmation page with your appointment date, time, and location</li>
+                <li>A list of things to bring will be shown (such as ID, medical records, prescriptions)</li>
+                <li>A confirmation message will be sent to your phone (SMS) or email</li>
+                <li>You can download and save a copy of your booking slip</li>
+                <li>You will receive a reminder message 24 hours before your appointment</li>
+            </ul>
+            <h3>If You Need to Cancel or Change</h3>
+            <p>
+                Contact your barangay health center directly. You can find their phone number at the facility or ask during your visit.
+            </p>
+            <h3>Need Help?</h3>
+            <p>
+                <strong>Call our hotline:</strong> (02) XXXX XXXX <br>
+                <strong>Visit us:</strong> Your nearest barangay health center <br>
+                <strong>Hours:</strong> Monday to Friday, 8 AM to 5 PM
+            </p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+    </footer>
+</body>
+</html>

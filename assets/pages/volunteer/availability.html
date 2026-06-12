@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Availability - LaanKalinga</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Manage Your Schedule</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="availability.html">Set Availability</a></li>
+                <li><a href="../public/index.html">Logout</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <section id="availability-form">
+            <h2>Set Your Weekly Availability</h2>
+            <p>Update your preferred days and time slots for volunteer assignments. Our staff will use this to schedule visits with assigned elderly residents.</p>
+            
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Select Available Slots</legend>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Day of the Week</th>
+                                <th>Morning (8:00 AM - 12:00 PM)</th>
+                                <th>Afternoon (12:00 PM - 5:00 PM)</th>
+                                <th>Evening (5:00 PM - 9:00 PM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Monday</strong></td>
+                                <td><input type="checkbox" name="mon_morning"></td>
+                                <td><input type="checkbox" name="mon_afternoon"></td>
+                                <td><input type="checkbox" name="mon_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tuesday</strong></td>
+                                <td><input type="checkbox" name="tue_morning"></td>
+                                <td><input type="checkbox" name="tue_afternoon"></td>
+                                <td><input type="checkbox" name="tue_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wednesday</strong></td>
+                                <td><input type="checkbox" name="wed_morning"></td>
+                                <td><input type="checkbox" name="wed_afternoon"></td>
+                                <td><input type="checkbox" name="wed_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Thursday</strong></td>
+                                <td><input type="checkbox" name="thu_morning"></td>
+                                <td><input type="checkbox" name="thu_afternoon"></td>
+                                <td><input type="checkbox" name="thu_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Friday</strong></td>
+                                <td><input type="checkbox" name="fri_morning"></td>
+                                <td><input type="checkbox" name="fri_afternoon"></td>
+                                <td><input type="checkbox" name="fri_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Saturday</strong></td>
+                                <td><input type="checkbox" name="sat_morning"></td>
+                                <td><input type="checkbox" name="sat_afternoon"></td>
+                                <td><input type="checkbox" name="sat_evening"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sunday</strong></td>
+                                <td><input type="checkbox" name="sun_morning"></td>
+                                <td><input type="checkbox" name="sun_afternoon"></td>
+                                <td><input type="checkbox" name="sun_evening"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend>Planned Unavailability & Leaves</legend>
+                    <p>
+                        <label for="leave-dates"><strong>List any specific dates you will be unavailable:</strong></label><br>
+                        <small>Example: June 20, 2026 to June 25, 2026</small><br>
+                        <textarea id="leave-dates" name="leave-dates" rows="3" cols="60"></textarea>
+                    </p>
+                </fieldset>
+                
+                <p>
+                    <button type="submit">Update Availability</button>
+                    <button type="reset">Reset Form</button>
+                </p>
+            </form>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+    </footer>
+</body>
+</html>

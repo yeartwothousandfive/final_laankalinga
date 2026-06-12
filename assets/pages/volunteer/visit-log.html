@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Log & Outcome - LaanKalinga</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Visit Details & Outcome Log</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="availability.html">Set Availability</a></li>
+                <li><a href="../public/index.html">Logout</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <section id="visit-details">
+            <h2>Senior Profile Information</h2>
+            <fieldset>
+                <legend>Basic Details</legend>
+                <p><strong>Name:</strong> Juan Dela Cruz</p>
+                <p><strong>Address:</strong> 123 Sampaguita St., Brgy. Pag-asa, Quezon City</p>
+                <p><strong>Emergency Contact:</strong> Maria Dela Cruz (0917 111 2222)</p>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Health Notes & Special Needs</legend>
+                <p><strong>Chronic Conditions:</strong> Hypertension, Type 2 Diabetes</p>
+                <p><strong>Mobility Needs:</strong> Cane / Baston</p>
+                <p><strong>Caregiver Instructions:</strong> Needs assistance with organizing daily medication and reading labels.</p>
+            </fieldset>
+        </section>
+        <br>
+        <section id="log-outcome">
+            <h2>Log Visit Outcome</h2>
+            <p>Please fill out the form below immediately after completing your visit.</p>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Visit Report</legend>
+                    <p>
+                        <label for="visit-date"><strong>Date of Visit *</strong></label><br>
+                        <input type="date" id="visit-date" name="visit-date" required>
+                    </p>
+                    <p>
+                        <label for="visit-notes"><strong>Outcome & Additional Notes *</strong></label><br>
+                        <small>Briefly summarize the activities done, the senior's general mood, and condition.</small><br>
+                        <textarea id="visit-notes" name="visit-notes" rows="5" cols="60" required></textarea>
+                    </p>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Raise a Flag (Requires Staff Attention)</legend>
+                    <p><small>Check the box below to notify the main staff if the senior requires immediate supplies or medical attention.</small></p>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="raise-flag" value="yes"> <strong>Flag this visit for immediate Staff Review</strong>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="flag-reason"><strong>Specific Need / Reason:</strong></label><br>
+                        <select id="flag-reason" name="flag-reason">
+                            <option value="">-- Select an Option --</option>
+                            <option value="medicine">Needs Medicine Refill</option>
+                            <option value="wheelchair">Needs Wheelchair or Mobility Aid</option>
+                            <option value="medical-attention">Requires Doctor / Medical Attention</option>
+                            <option value="food-supplies">Needs Food / Grocery Supplies</option>
+                            <option value="other">Other Concern</option>
+                        </select>
+                    </p>
+                </fieldset>
+                
+                <p>
+                    <button type="submit">Submit Visit Record</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+            </form>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+    </footer>
+</body>
+</html>
