@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> login page </title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/public.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="logo-section">
+                <img src="../../images/logo.png" alt="LaanKalinga Logo" class="logo">
+                <h1>LaanKalinga</h1>
+                <p>Care & Companionship for Seniors</p>
+            </div>
+            <div class="form-section">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Sign in to your account</p>
+                <form id="loginForm" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                    </div>
+                    <!-- password -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <img src="../../icons/pass.svg" class="input-icon" style="width: 1.3rem; height: 1.3rem;">
+              <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" />
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password visibility">
+                <img src="../../icons/hidepass.svg" id="iconEyeVisible" style="width: 1.4rem; height: 1.4rem;">
+                <img src="../../icons/viewpass.svg" id="iconEyeHidden" style="width: 1.4rem; height: 1.4rem;">
+              </button>
+            </div>
+            <span class="error-msg" id="passwordError">Password must be at least 6 characters.</span>
+          </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+                <div class="divider">
+                    <span>or</span>
+                </div>
+                <p class="register-link">
+                    Don't have an account?
+                    <a href="register-family.html">Register here</a>
+                </p>
+            </div>
+        </div>
+        <footer class="login-footer">
+            <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
