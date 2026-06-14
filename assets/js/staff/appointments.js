@@ -1,4 +1,4 @@
-// placeholde (similar to json file sa lakbay before)
+// data
 const APPOINTMENTS = [
   {
     id: 1,
@@ -10,7 +10,9 @@ const APPOINTMENTS = [
     location: '123 Sampaguita St.',
     contact: '+63 912 345 6789',
     status: 'pending',
-    assignedTo: null,
+    assignedVolunteer: null,
+    assignedStaff: null,
+    rejectReason: null,
   },
   {
     id: 2,
@@ -22,7 +24,9 @@ const APPOINTMENTS = [
     location: '45 Rosal Ave.',
     contact: '+63 917 654 3210',
     status: 'pending',
-    assignedTo: null,
+    assignedVolunteer: null,
+    assignedStaff: null,
+    rejectReason: null,
   },
   {
     id: 3,
@@ -34,21 +38,72 @@ const APPOINTMENTS = [
     location: '78 Ilang-Ilang St.',
     contact: '+63 920 111 2222',
     status: 'approved',
-    assignedTo: null,
+    assignedVolunteer: null,
+    assignedStaff: null,
+    rejectReason: null,
   },
 ];
 
 const VOLUNTEERS = [
-  { id: 'vol1',   name: 'Ana Garcia',  role: 'Volunteer' },
-  { id: 'vol2',   name: 'Luis Torres', role: 'Volunteer' },
-  { id: 'staff1', name: 'Nurse Maria', role: 'Staff'     },
+  { id: 'vol1', name: 'Ana Garcia' },
+  { id: 'vol2', name: 'Luis Torres' },
+];
+
+const STAFF = [
+  { id: 'staff1', name: 'Nurse Maria' },
+  { id: 'staff2', name: 'Nurse Reyes' },
 ];
 
 // state
 let appointments = [...APPOINTMENTS];
 let pendingRejectId = null;
+let pendingConfirmAction = null;
 
-// helpers: filter, status badge, volunteer dropdown
+// offline banner
+const bannerOffline = document.getElementById('banner-offline');
+window.addEventListener('offline', () => { bannerOffline.hidden = false; });
+window.addEventListener('online',  () => { bannerOffline.hidden = true;  });
+if (!navigator.onLine) bannerOffline.hidden = false;
+
+// logout
+document.getElementById('logout-link').addEventListener('click', (e) => {
+  e.preventDefault();
+  // clear staff session here (handled by backend session/JS function)
+  window.location.href = '../public/index.html';
+});
+
+
+// toast notifications (replaces alert())
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.hidden = false;
+  setTimeout(() => { toast.hidden = true; }, 3000);
+}
+
+
+// generic confirm modal (replaces confirm())
+function openConfirmModal(message, onConfirm) {
+  document.getElementById('confirm-modal-message').textContent = message;
+  pendingConfirmAction = onConfirm;
+  document.getElementById('confirm-modal').hidden = false;
+  document.getElementById('confirm-modal-yes').focus();
+}
+
+function closeConfirmModal() {
+  pendingConfirmAction = null;
+  document.getElementById('confirm-modal').hidden = true;
+}
+
+document.getElementById('confirm-modal-yes').addEventListener('click', () => {
+  if (pendingConfirmAction) pendingConfirmAction();
+  closeConfirmModal();
+});
+
+document.getElementById('confirm-modal-no').addEventListener('click', closeConfirmModal);
+
+
+// helpers
 function getFiltered() {
   const query = document.getElementById('search-input').value.toLowerCase();
   const statusFilter = document.getElementById('filter-status').value;
@@ -68,47 +123,56 @@ function buildBadge(status) {
   return span;
 }
 
-function buildVolunteerDropdown(apptId, currentValue) {
+function buildPersonnelDropdown(apptId, list, currentValue, label, dataAttr) {
   const select = document.createElement('select');
-  select.className = 'volunteer-select';
+  select.className = 'personnel-select';
   select.dataset.id = apptId;
-  select.setAttribute('aria-label', 'Assign volunteer');
+  select.dataset.type = dataAttr;
+  select.setAttribute('aria-label', label);
 
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = '— Select Personnel —';
+  placeholder.textContent = `— Select ${label} —`;
   select.appendChild(placeholder);
 
-  VOLUNTEERS.forEach(v => {
+  list.forEach(p => {
     const opt = document.createElement('option');
-    opt.value = v.id;
-    opt.textContent = `${v.name} (${v.role})`;
-    if (v.id === currentValue) opt.selected = true;
+    opt.value = p.id;
+    opt.textContent = p.name;
+    if (p.id === currentValue) opt.selected = true;
     select.appendChild(opt);
   });
 
   return select;
 }
 
-// render table
+
+// render: pending
 function renderPending(list) {
-  const pending = list.filter(a => a.status === 'pending');
-  const tbody = document.getElementById('pending-tbody');
-  const table = document.getElementById('pending-table');
-  const empty = document.getElementById('pending-empty');
+  const all = appointments.filter(a => a.status === 'pending');
+  const filtered = list.filter(a => a.status === 'pending');
+
+  const tbody  = document.getElementById('pending-tbody');
+  const table  = document.getElementById('pending-table');
+  const empty  = document.getElementById('pending-empty');
+  const noRes  = document.getElementById('pending-no-results');
 
   tbody.innerHTML = '';
 
-  if (pending.length === 0) {
-    table.hidden = true;
-    empty.hidden = false;
+  if (all.length === 0) {
+    table.hidden = true; empty.hidden = false; noRes.hidden = true;
     return;
   }
-
-  table.hidden = false;
   empty.hidden = true;
 
-  pending.forEach(a => {
+  if (filtered.length === 0) {
+    table.hidden = true; noRes.hidden = false;
+    return;
+  }
+  noRes.hidden = true;
+  table.hidden = false;
+
+  filtered.forEach(a => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${a.dateRequested}</td>
@@ -121,30 +185,38 @@ function renderPending(list) {
         <button class="btn-reject"  data-id="${a.id}">Reject</button>
       </td>
     `;
-    // insert badge into the empty <td> cleanly
     tr.cells[4].appendChild(buildBadge(a.status));
     tbody.appendChild(tr);
   });
 }
 
+
+// render: approved (needs assignment)
 function renderApproved(list) {
-  const approved = list.filter(a => a.status === 'approved');
-  const tbody = document.getElementById('approved-tbody');
-  const table = document.getElementById('approved-table');
-  const empty = document.getElementById('approved-empty');
+  const all = appointments.filter(a => a.status === 'approved');
+  const filtered = list.filter(a => a.status === 'approved');
+
+  const tbody  = document.getElementById('approved-tbody');
+  const table  = document.getElementById('approved-table');
+  const empty  = document.getElementById('approved-empty');
+  const noRes  = document.getElementById('approved-no-results');
 
   tbody.innerHTML = '';
 
-  if (approved.length === 0) {
-    table.hidden = true;
-    empty.hidden = false;
+  if (all.length === 0) {
+    table.hidden = true; empty.hidden = false; noRes.hidden = true;
     return;
   }
-
-  table.hidden = false;
   empty.hidden = true;
 
-  approved.forEach(a => {
+  if (filtered.length === 0) {
+    table.hidden = true; noRes.hidden = false;
+    return;
+  }
+  noRes.hidden = true;
+  table.hidden = false;
+
+  filtered.forEach(a => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${a.preferredDate} ${a.preferredTime}</td>
@@ -155,26 +227,82 @@ function renderApproved(list) {
       <td></td>
       <td><button class="btn-assign" data-id="${a.id}">Confirm Assignment</button></td>
     `;
-    tr.cells[4].appendChild(buildBadge(a.status));
-    tr.cells[5].appendChild(buildVolunteerDropdown(a.id, a.assignedTo));
+    tr.cells[4].appendChild(buildPersonnelDropdown(a.id, VOLUNTEERS, a.assignedVolunteer, 'Volunteer', 'volunteer'));
+    tr.cells[5].appendChild(buildPersonnelDropdown(a.id, STAFF, a.assignedStaff, 'Staff', 'staff'));
     tbody.appendChild(tr);
   });
 }
+
+
+// render: processed (assigned + rejected)
+function renderProcessed(list) {
+  const all = appointments.filter(a => a.status === 'assigned' || a.status === 'rejected');
+  const filtered = list.filter(a => a.status === 'assigned' || a.status === 'rejected');
+
+  const tbody = document.getElementById('processed-tbody');
+  const table = document.getElementById('processed-table');
+  const empty = document.getElementById('processed-empty');
+  const noRes = document.getElementById('processed-no-results');
+
+  tbody.innerHTML = '';
+
+  if (all.length === 0) {
+    table.hidden = true; empty.hidden = false; noRes.hidden = true;
+    return;
+  }
+  empty.hidden = true;
+
+  if (filtered.length === 0) {
+    table.hidden = true; noRes.hidden = false;
+    return;
+  }
+  noRes.hidden = true;
+  table.hidden = false;
+
+  filtered.forEach(a => {
+    const tr = document.createElement('tr');
+    let detail = '—';
+
+    if (a.status === 'assigned') {
+      const names = [];
+      if (a.assignedVolunteer) names.push(VOLUNTEERS.find(v => v.id === a.assignedVolunteer)?.name);
+      if (a.assignedStaff) names.push(STAFF.find(s => s.id === a.assignedStaff)?.name);
+      detail = names.join(', ') || '—';
+    } else if (a.status === 'rejected') {
+      detail = a.rejectReason || '—';
+    }
+
+    tr.innerHTML = `
+      <td>${a.preferredDate} ${a.preferredTime}</td>
+      <td>${a.seniorName}</td>
+      <td>${a.serviceType}</td>
+      <td></td>
+      <td>${detail}</td>
+    `;
+    tr.cells[3].appendChild(buildBadge(a.status));
+    tbody.appendChild(tr);
+  });
+}
+
 
 function render() {
   const filtered = getFiltered();
   renderPending(filtered);
   renderApproved(filtered);
+  renderProcessed(filtered);
 }
 
-// actions: approve, reject (w reason), close and confirm reject, assign volunteer
+
+// actions
 function approveAppointment(id) {
-  if (!confirm('Approve this appointment?')) return;
-  appointments = appointments.map(a =>
-    a.id === id ? { ...a, status: 'approved' } : a
-  );
-  render();
-  // TODO: POST /api/appointments/approve
+  openConfirmModal('Approve this visit request?', () => {
+    appointments = appointments.map(a =>
+      a.id === id ? { ...a, status: 'approved' } : a
+    );
+    render();
+    showToast('Visit request approved.');
+    // TODO: POST /api/appointments/approve
+  });
 }
 
 function openRejectModal(id) {
@@ -201,36 +329,43 @@ function confirmReject() {
   );
   closeRejectModal();
   render();
+  showToast('Visit request rejected.');
   // TODO: POST /api/appointments/reject
 }
 
-function assignVolunteer(id) {
-  const select = document.querySelector(`.volunteer-select[data-id="${id}"]`);
-  if (!select || !select.value) {
-    alert('Please select a volunteer or staff member first.');
+function assignPersonnel(id) {
+  const volunteerSelect = document.querySelector(`.personnel-select[data-id="${id}"][data-type="volunteer"]`);
+  const staffSelect     = document.querySelector(`.personnel-select[data-id="${id}"][data-type="staff"]`);
+
+  if (!volunteerSelect.value && !staffSelect.value) {
+    showToast('Please select at least one volunteer or staff member.');
     return;
   }
-  appointments = appointments.map(a =>
-    a.id === id ? { ...a, assignedTo: select.value } : a
-  );
-  alert('Assignment confirmed. They will be notified.');
-  render();
-  // TODO: POST /api/appointments/assign (when php is done, replace this with real API call)
-    
-  /* something like: 
-        fetch('/api/appointments/assign', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appointmentId: id, volunteerId: select.value })
-        });
+
+  openConfirmModal('Confirm this assignment? The assigned person will be notified.', () => {
+    appointments = appointments.map(a =>
+      a.id === id
+        ? { ...a, status: 'assigned', assignedVolunteer: volunteerSelect.value || null, assignedStaff: staffSelect.value || null }
+        : a
+    );
+    render();
+    showToast('Assignment confirmed.');
+    /* TODO: POST /api/appointments/assign
+       fetch('/api/appointments/assign', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ appointmentId: id, volunteerId: volunteerSelect.value, staffId: staffSelect.value })
+       });
     */
+  });
 }
+
 
 // event listeners
 document.addEventListener('click', e => {
-  if (e.target.matches('.btn-approve'))      approveAppointment(Number(e.target.dataset.id));
-  if (e.target.matches('.btn-reject'))       openRejectModal(Number(e.target.dataset.id));
-  if (e.target.matches('.btn-assign'))       assignVolunteer(Number(e.target.dataset.id));
+  if (e.target.matches('.btn-approve'))       approveAppointment(Number(e.target.dataset.id));
+  if (e.target.matches('.btn-reject'))        openRejectModal(Number(e.target.dataset.id));
+  if (e.target.matches('.btn-assign'))        assignPersonnel(Number(e.target.dataset.id));
   if (e.target.matches('#reject-confirm-btn')) confirmReject();
   if (e.target.matches('#reject-cancel-btn'))  closeRejectModal();
 });
