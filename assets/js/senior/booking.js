@@ -15,6 +15,16 @@ const REQUIRED_FIELDS = [
     ['reason',             'error-reason',             'Reason for visit'],
 ];
 
+// set correct dashboard links based on logged-in role
+const userRole = sessionStorage.getItem('userRole'); // 'senior' or 'family'
+const dashboardPath = userRole === 'family' ? '../senior/fam-dashboard.html' : '../senior/dashboard.html';
+
+const navDashboardLink = document.getElementById('nav-dashboard-link');
+if (navDashboardLink) navDashboardLink.href = dashboardPath;
+
+const dashboardLink = document.getElementById('dashboard-link');
+if (dashboardLink) dashboardLink.href = dashboardPath;
+
 // inline error for a single field (for example: "age must be between 50 and 120")
 function showError(fieldId, errorId, message) {
     const field = document.getElementById(fieldId);
