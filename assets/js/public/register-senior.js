@@ -1,3 +1,63 @@
+// barangay
+const qcBarangays = [
+  'Alicia', 'Amihan', 'Apolonio Samson', 'Aurora', 'Baesa', 'Bagbag',
+  'Bagong Buhay', 'Bagong Pag-Asa', 'Bagong Silangan', 'Bagong Silang',
+  'Bagumbayan', 'Bagumbuhay', 'Bahay Toro', 'Balingasa', 'Balintawak',
+  'Batasan Hills', 'Bayanihan', 'Blue Ridge A', 'Blue Ridge B',
+  'Botocan', 'Bungad', 'Camp Aguinaldo', 'Capri', 'Central',
+  'Claro', 'Commonwealth', 'Culiat', 'Damar', 'Damayan',
+  'Damayan Lagi', 'Dangwa', 'Del Monte', 'Dioquino Zobel',
+  'Don Manuel', 'Doña Aurora', 'Doña Imelda', 'Doña Josefa',
+  'Duyan-Duyan', 'E. Rodriguez', 'East Kamias', 'Escopa I',
+  'Escopa II', 'Escopa III', 'Escopa IV', 'Fairview', 'Greater Lagro',
+  'Gulod', 'Holy Spirit', 'Horseshoe', 'Immaculate Concepcion',
+  'Kaligayahan', 'Kalusugan', 'Kamuning', 'Katipunan', 'Kaunlaran',
+  'Kristong Hari', 'Krus na Ligas', 'Laging Handa', 'Libis',
+  'Lourdes', 'Loyola Heights', 'Lucban', 'Luzviminda',
+  'Maharlika', 'Malaya', 'Mangga', 'Manresa', 'Mariana',
+  'Mariblo', 'Marilag', 'Masagana', 'Masambong', 'Matandang Balara',
+  'Milagrosa', 'Model', 'Nagkaisang Nayon', 'Nayong Kanluran',
+  'New Era', 'North Fairview', 'Novaliches Proper', 'Obrero',
+  'Old Capitol Site', 'Paang Bundok', 'Pag-Ibig sa Nayon',
+  'Paligsahan', 'Paltok', 'Pansol', 'Paraiso', 'Pasong Putik Proper',
+  'Pasong Tamo', 'Payatas', 'Phil-Am', 'Pinagkaisahan', 'Pinyahan',
+  'Pitogo', 'Plaridel', 'Poblacion', 'Project 6', 'Pugad Lawin',
+  'Quezon City Proper', 'Quirino 2-A', 'Quirino 2-B', 'Quirino 2-C',
+  'Quirino 3-A', 'Ramon Magsaysay', 'Roxas', 'Sacred Heart',
+  'Saint Ignatius', 'Saint Peter', 'Salvacion', 'San Agustin',
+  'San Antonio', 'San Bartolome', 'San Isidro', 'San Isidro Labrador',
+  'San Jose', 'San Martin de Porres', 'San Roque', 'San Vicente',
+  'Sangandaan', 'Santa Cruz', 'Santa Lucia', 'Santa Monica',
+  'Santa Teresita', 'Santo Cristo', 'Santo Niño', 'Santol',
+  'Sauyo', 'Siena', 'Sikatuna Village', 'Silangan', 'Socorro',
+  'South Triangle', 'Tagumpay', 'Talayan', 'Talipapa',
+  'Tandang Sora', 'Tatalon', "Teacher's Village East",
+  "Teacher's Village West", 'Ugong Norte', 'Unang Sigaw',
+  'UP Campus', 'UP Village', 'Vasra', 'Veterans Village',
+  'Villa Maria Clara', 'West Kamias', 'West Triangle', 'White Plains'
+];
+
+const barangaySearch = document.getElementById('barangay-search');
+const barangayHidden = document.getElementById('barangay');
+const barangayList   = document.getElementById('barangay-list');
+
+qcBarangays.forEach(b => {
+  const opt = document.createElement('option');
+  opt.value = b;
+  barangayList.appendChild(opt);
+});
+
+barangaySearch.addEventListener('change', () => {
+  const val = barangaySearch.value.trim();
+  if (qcBarangays.includes(val)) {
+    barangayHidden.value = val;
+    clearError('barangay-search', 'error-barangay');
+  } else {
+    barangayHidden.value = '';
+    showError('barangay-search', 'error-barangay');
+  }
+});
+
 // helpers
 function showError(fieldId, errorId, message) {
   const field = document.getElementById(fieldId);
@@ -14,6 +74,48 @@ function clearError(fieldId, errorId) {
   if (!field || !errorEl) return;
   field.classList.remove('field--invalid');
   errorEl.hidden = true;
+}
+
+document.getElementById('password').addEventListener('blur', () => {
+  validatePassword(); // already shows/clears its own errors
+});
+
+document.getElementById('confirm-password').addEventListener('blur', () => {
+  const match = document.getElementById('password').value === document.getElementById('confirm-password').value;
+  if (!match) showError('confirm-password', 'error-confirm-password');
+  else clearError('confirm-password', 'error-confirm-password');
+});
+
+// password toggle
+const pwInput = document.getElementById('password');
+const togglePw = document.getElementById('toggle-pw');
+const iconHide = document.getElementById('icon-hide');
+const iconShow = document.getElementById('icon-show');
+iconShow.hidden = true;
+togglePw.addEventListener('click', () => {
+  const isHidden = pwInput.type === 'password';
+  pwInput.type = isHidden ? 'text' : 'password';
+  iconHide.hidden = isHidden;
+  iconShow.hidden = !isHidden;
+});
+
+// password validation
+function validatePassword() {
+  const pw = document.getElementById('password');
+  const confirm = document.getElementById('confirm-password');
+
+  if (pw.value.length < 8) {
+    showError('password', 'error-password');
+    return false;
+  }
+  clearError('password', 'error-password');
+
+  if (pw.value !== confirm.value) {
+    showError('confirm-password', 'error-confirm-password');
+    return false;
+  }
+  clearError('confirm-password', 'error-confirm-password');
+  return true;
 }
 
 // dob validation
@@ -105,17 +207,21 @@ REQUIRED_FIELDS.forEach(([fieldId, errorId]) => {
   const el = document.getElementById(fieldId);
   if (!el) return;
   el.addEventListener('blur', () => {
+
     if (fieldId === 'dob') { validateDob(); return; }
     if (fieldId === 'phone' || fieldId === 'primary-contact-phone') {
       validatePhone(fieldId, errorId); return;
     }
+
     if (el.type === 'checkbox') {
       if (!el.checked) showError(fieldId, errorId);
       else clearError(fieldId, errorId);
       return;
     }
+
     if (!el.value.trim()) showError(fieldId, errorId);
     else clearError(fieldId, errorId);
+
   });
   el.addEventListener('input', () => {
     if (el.type === 'checkbox') return;
@@ -157,6 +263,12 @@ document.getElementById('register-senior-form').addEventListener('submit', e => 
     } else {
       clearError(fieldId, errorId);
     }
+
+    if (!barangayHidden.value) {
+      showError('barangay-search', 'error-barangay');
+      errors.push({ fieldId: 'barangay-search', label: 'Barangay' });
+    }
+
   });
 
   // philsys: must have ID or follow-up checked

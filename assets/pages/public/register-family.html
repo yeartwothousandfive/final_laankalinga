@@ -91,6 +91,33 @@
             </span>
           </div>
 
+          <div class="form-row two-column">
+          <div class="field-group" id="group-password">
+            <label for="password">Password <span aria-label="required">*</span></label>
+            <small>Dapat 8 o higit pang karakter. / Must be at least 8 characters.</small>
+            <div class="input-wrapper">
+              <input type="password" id="password" name="password" required minlength="8"
+                    autocomplete="new-password" aria-describedby="error-password">
+              <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Ipakita ang password / Show password">
+                <img src="../../icons/hidepass.svg" id="icon-hide" alt="">
+                <img src="../../icons/viewpass.svg" id="icon-show" alt="">
+              </button>
+            </div>
+            <span class="error-msg" id="error-password" aria-live="polite" hidden>
+              Dapat 8 o higit pang karakter ang password. <small>Password must be at least 8 characters.</small>
+            </span>
+          </div>
+
+          <div class="field-group" id="group-confirm-password">
+            <label for="confirm-password">Kumpirmahin ang Password <small>Confirm password</small> <span aria-label="required">*</span></label>
+            <input type="password" id="confirm-password" name="confirm_password" required
+                  autocomplete="new-password" aria-describedby="error-confirm-password">
+            <span class="error-msg" id="error-confirm-password" aria-live="polite" hidden>
+              Hindi tugma ang password. <small>Passwords do not match.</small>
+            </span>
+          </div>
+        </div>
+
           <div class="field-group" id="group-phone">
             <label for="phone">Numero ng Cellphone <small>Mobile number</small> <span aria-label="required">*</span></label>
             <input type="tel" id="phone" name="phone" required placeholder="09XX XXX XXXX" autocomplete="tel" aria-describedby="error-phone">

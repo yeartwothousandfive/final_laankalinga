@@ -5,12 +5,10 @@
   window.addEventListener('online',  () => { bannerOffline.hidden = true;  });
   if (!navigator.onLine) bannerOffline.hidden = false;
 
-
   const params = new URLSearchParams(window.location.search);
   if (params.get('reason') === 'session-expired') {
     document.getElementById('banner-session').hidden = false;
   }
-
 
   const qcBarangays = [
     'Alicia', 'Amihan', 'Apolonio Samson', 'Aurora', 'Baesa', 'Bagbag',
@@ -72,6 +70,23 @@
       showError('error-barangay', true);
     }
   });
+
+  // password toggle
+  const pwInput = document.getElementById('password');
+  const togglePw = document.getElementById('toggle-pw');
+  const iconHide = document.getElementById('icon-hide');
+  const iconShow = document.getElementById('icon-show');
+  iconShow.hidden = true;
+  togglePw.addEventListener('click', () => {
+    const isHidden = pwInput.type === 'password';
+    pwInput.type = isHidden ? 'text' : 'password';
+    iconHide.hidden = isHidden;
+    iconShow.hidden = !isHidden;
+  });
+
+  function isValidPassword(val) {
+    return val.length >= 8;
+  }
 
 
   // senior search
@@ -206,6 +221,7 @@
     { id: 'house-number',errorId: 'error-house-number',check: v => v.trim() !== '' },
     { id: 'street',      errorId: 'error-street',      check: v => v.trim() !== '' },
     { id: 'zip',         errorId: 'error-zip',         check: v => v.trim() !== '' },
+    { id: 'password', errorId: 'error-password', check: v => isValidPassword(v) },
   ];
 
   blurRules.forEach(({ id, errorId, check }) => {
@@ -215,6 +231,11 @@
         showError(errorId, !check(el.value));
       });
     }
+  });
+
+  document.getElementById('confirm-password').addEventListener('blur', () => {
+    showError('error-confirm-password',
+      document.getElementById('password').value !== document.getElementById('confirm-password').value);
   });
 
   // select blur validation
@@ -257,7 +278,8 @@
     check('street',       'error-street',        document.getElementById('street').value.trim() !== '',       'Please enter your street name.');
     check('zip',          'error-zip',           document.getElementById('zip').value.trim() !== '',          'Please enter your ZIP code.');
     check('barangay-search', 'error-barangay',   barangayHidden.value !== '',                                 'Please select a valid barangay.');
-
+    check('password', 'error-password', isValidPassword(document.getElementById('password').value), 'Password must be at least 8 characters.');
+    check('confirm-password', 'error-confirm-password', document.getElementById('password').value === document.getElementById('confirm-password').value, 'Passwords do not match.');
     // step 2
     check('relationship',    'error-relationship',    document.getElementById('relationship').value !== '',    'Please select your relationship to the senior.');
     check('decision-maker',  'error-decision-maker',  document.getElementById('decision-maker').value !== '',  'Please answer the decision maker question.');
