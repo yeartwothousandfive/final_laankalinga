@@ -37,23 +37,10 @@
       errorRole.hidden = true;
       document.getElementById('register-prompt').hidden = false;
 
-      // update register link based on role
       document.getElementById('register-link').href = registerRoutes[selectedRole];
     });
   });
 
-  const dashboardRoutes = {
-    senior:    '../pages/senior/dashboard.html',
-    family:    '../pages/senior/fam-dashboard.html',
-    volunteer: '../pages/volunteer/dashboard.html'
-  };
-
-  /*
-  if (simulatedResponse === 'success') {
-    window.location.href = dashboardRoutes[selectedRole];
-  }
-  */
-  // password toggle
   const passwordInput = document.getElementById('password');
   const toggleBtn     = document.getElementById('toggle-pw');
   const iconHide      = document.getElementById('icon-hide');
