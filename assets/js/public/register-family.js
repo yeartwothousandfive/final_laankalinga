@@ -314,6 +314,7 @@
     }
 
     summaryBox.hidden = true;
+    e.target.submit();
 
     // replace w actual fetch
     document.getElementById('register-family-form').hidden = true;

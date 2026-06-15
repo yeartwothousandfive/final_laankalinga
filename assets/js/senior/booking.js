@@ -15,16 +15,6 @@ const REQUIRED_FIELDS = [
     ['reason',             'error-reason',             'Reason for visit'],
 ];
 
-// set correct dashboard links based on logged-in role
-const userRole = sessionStorage.getItem('userRole'); // 'senior' or 'family'
-const dashboardPath = userRole === 'family' ? '../senior/fam-dashboard.html' : '../senior/dashboard.html';
-
-const navDashboardLink = document.getElementById('nav-dashboard-link');
-if (navDashboardLink) navDashboardLink.href = dashboardPath;
-
-const dashboardLink = document.getElementById('dashboard-link');
-if (dashboardLink) dashboardLink.href = dashboardPath;
-
 // inline error for a single field (for example: "age must be between 50 and 120")
 function showError(fieldId, errorId, message) {
     const field = document.getElementById(fieldId);
@@ -78,12 +68,13 @@ function validateDate() {
     return true;
 }
 
-// blur validations lang, magpapakita inline error messages kapag user leaves a required field empty or with invalid data. 
-// input event will clear the error as soon as they start typing again
-REQUIRED_FIELDS.forEach(([fieldId, errorId]) => {
     const serviceSelect = document.getElementById('service-type');
     const serviceOtherGroup = document.getElementById('group-service-other');
     const serviceOtherInput = document.getElementById('service-other');
+
+// blur validations lang, magpapakita inline error messages kapag user leaves a required field empty or with invalid data. 
+// input event will clear the error as soon as they start typing again
+REQUIRED_FIELDS.forEach(([fieldId, errorId]) => {
 
     serviceSelect.addEventListener('change', () => {
     const isOther = serviceSelect.value === 'other';
@@ -175,7 +166,7 @@ form.addEventListener('submit', (e) => {
 
     // no errors
     document.getElementById('error-summary').hidden = true;
-    submitBooking();
+    form.submit();
 });
 
 // page-level error (for example: "the time slot you chose is no longer available. please pick a different time.")
@@ -202,6 +193,6 @@ function submitBooking() {
 
     // On success, redirect to confirmation page:
     // window.location.href = 'confirmation.html';
-
+    
     alert('Booking submitted! (Integrate real API here.)');
 }
