@@ -310,6 +310,8 @@ document.getElementById('register-senior-form').addEventListener('submit', e => 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Nagsusumite… / Submitting…';
 
+  e.target.submit();
+
   // TODO: POST /api/register/senior
   document.getElementById('register-senior-form').hidden = true;
   document.getElementById('register-success').hidden = false;

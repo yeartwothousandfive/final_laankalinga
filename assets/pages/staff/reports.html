@@ -7,197 +7,109 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <div class="banner-error" id="banner-offline" role="alert" aria-live="assertive" hidden>
-    <p>No internet connection. Please check your network and try again.</p>
-  </div>
-
-  <div class="banner-error" id="banner-load-error" role="alert" aria-live="assertive" hidden>
-    <p>Could not load reports data. <button type="button" id="btn-retry-load" class="btn-secondary">Retry</button></p>
-  </div>
-
-  <div id="toast" role="status" aria-live="polite" hidden></div>
-
-  <header>
-    <h1>Reports</h1>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="appointments.html">Appointments</a></li>
-        <li><a href="seniors.html">Seniors List</a></li>
-        <li><a href="flagged.html">Flagged Cases</a></li>
-        <li><a href="reports.html" aria-current="page">Reports</a></li>
-        <li><a href="#" id="logout-link">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="main-content">
-
-    <!-- FILTERS -->
-    <section id="report-filters">
-      <h2>Filter Reports</h2>
-      <div class="filter-bar">
-        <label for="filter-date-from">From:</label>
-        <input type="date" id="filter-date-from">
-        <label for="filter-date-to">To:</label>
-        <input type="date" id="filter-date-to">
-        <button type="button" id="btn-apply-filter" class="btn-primary">Apply</button>
-        <button type="button" id="btn-reset-filter" class="btn-secondary">Reset</button>
-      </div>
-    </section>
-
-    <!-- SUMMARY STATISTICS -->
-    <section id="statistics">
-      <h2>Summary</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <p class="stat-card__label">Visits Completed</p>
-          <p class="stat-card__value" id="stat-completed">0</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-card__label">No-shows / Cancelled</p>
-          <p class="stat-card__value" id="stat-cancelled">0</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-card__label">Active Seniors</p>
-          <p class="stat-card__value" id="stat-seniors">0</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-card__label">Flagged Cases Pending</p>
-          <p class="stat-card__value" id="stat-flagged-pending">0</p>
-        </div>
-        <div class="stat-card">
-          <p class="stat-card__label">Flagged Cases Resolved</p>
-          <p class="stat-card__value" id="stat-flagged-resolved">0</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT LOGS -->
-    <section id="visit-logs">
-      <h2>Visit Logs</h2>
-      <p>Completed visits within the selected period.</p>
-
-      <div class="filter-bar">
-        <input type="search" id="search-visits" placeholder="Search by senior or volunteer…" aria-label="Search visit logs">
-        <select id="filter-service" aria-label="Filter by service type">
-          <option value="">All Services</option>
-          <option value="General Checkup">General Checkup</option>
-          <option value="Blood Pressure Check">Blood Pressure Check</option>
-          <option value="Wellness Visit">Wellness Visit</option>
-        </select>
-        <button type="button" id="btn-export-visits" class="btn-secondary">Export CSV</button>
-      </div>
-
-      <div id="visits-empty" class="empty-state" hidden>
-        <p class="empty-state__message">No visit logs for the selected period.</p>
-      </div>
-
-      <div id="visits-no-results" class="empty-state" hidden>
-        <p class="empty-state__message">No visits match your search or filter.</p>
-      </div>
-
-      <table id="visits-table" hidden>
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Senior Name</th>
-            <th scope="col">Service</th>
-            <th scope="col">Volunteer / Staff</th>
-            <th scope="col">Outcome</th>
-          </tr>
-        </thead>
-        <tbody id="visits-tbody"></tbody>
-      </table>
-    </section>
-
-    <!-- FLAGGED CASES SUMMARY -->
-    <section id="flagged-summary">
-      <h2>Flagged Cases Breakdown</h2>
-
-      <div id="flagged-summary-empty" class="empty-state" hidden>
-        <p class="empty-state__message">No flagged cases for the selected period.</p>
-      </div>
-
-      <table id="flagged-summary-table" hidden>
-        <thead>
-          <tr>
-            <th scope="col">Resolution Type</th>
-            <th scope="col">Count</th>
-          </tr>
-        </thead>
-        <tbody id="flagged-summary-tbody"></tbody>
-      </table>
-
-      <button type="button" id="btn-export-flagged" class="btn-secondary">Export CSV</button>
-    </section>
-
-    <!-- UPCOMING EVENTS (read-only) -->
-    <section id="upcoming-events">
-      <h2>Upcoming Community Events</h2>
-      <p>Scheduled events managed by the admin.</p>
-
-      <div id="events-empty" class="empty-state" hidden>
-        <p class="empty-state__message">No upcoming events.</p>
-      </div>
-
-      <table id="events-table" hidden>
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Event Name</th>
-            <th scope="col">Location</th>
-            <th scope="col">Target Group</th>
-          </tr>
-        </thead>
-        <tbody id="events-tbody"></tbody>
-      </table>
-    </section>
-
-        <!-- CALENDAR -->
-    <section id="calendar">
-    <h2>Activity Calendar</h2>
-    <p>Click a date to see visits and events scheduled on that day.</p>
-
-    <div class="cal">
-        <div class="cal__nav">
-        <button type="button" id="cal-prev" class="btn-secondary" aria-label="Previous month">&lsaquo;</button>
-        <span id="cal-heading" class="cal__heading" aria-live="polite"></span>
-        <button type="button" id="cal-next" class="btn-secondary" aria-label="Next month">&rsaquo;</button>
-        </div>
-
-        <div class="cal__grid" id="cal-grid" role="grid" aria-label="Calendar"></div>
-
-        <div class="cal__detail" id="cal-detail" hidden>
-        <div class="cal__detail-header">
-            <strong id="cal-detail-date"></strong>
-            <button type="button" id="cal-detail-close" class="btn-secondary" aria-label="Close">&times;</button>
-        </div>
-        <div id="cal-detail-body"></div>
-        </div>
-    </div>
-    </section>
-
-  </main>
-
-  <!-- GENERIC CONFIRM MODAL -->
-  <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" hidden>
-    <div class="modal__box">
-      <h3 id="confirm-modal-title">Are you sure?</h3>
-      <p id="confirm-modal-message"></p>
-      <div class="modal__actions">
-        <button type="button" id="confirm-modal-yes" class="btn-primary">Yes</button>
-        <button type="button" id="confirm-modal-no" class="btn-secondary">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
-  </footer>
-
-  <script src="../../js/staff/reports.js"></script>
+    <header>
+        <h1>Reports, Announcements & Events</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a href="seniors.html">Seniors List</a></li>
+                <li><a href="flagged.html">Flagged Cases</a></li>
+                <li><a href="reports.html">Reports & Events</a></li>
+                <li><a href="../public/index.html">Logout</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <section id="export-reports">
+            <h2>Export Data Reports</h2>
+            <p>Generate CSV reports for administrative review and record keeping.</p>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Report Generation</legend>
+                    <p>
+                        <label for="report-type">Select Data to Export:</label>
+                        <select id="report-type" name="report_type">
+                            <option value="visits">Monthly Visit Logs</option>
+                            <option value="seniors">Registered Senior Citizens</option>
+                            <option value="appointments">Appointment History</option>
+                            <option value="flagged">Resolved Flagged Cases</option>
+                        </select>
+                    </p>
+                    <p>
+                        <button type="submit">Download as CSV</button>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+        <br>
+        <section id="announcements">
+            <h2>Send Announcements</h2>
+            <p>Broadcast messages to specific user groups via their dashboards and registered contact methods.</p>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>New Announcement</legend>
+                    <p>
+                        <label for="target-audience">Target Audience:</label>
+                        <select id="target-audience" name="target_audience" required>
+                            <option value="all">All Users</option>
+                            <option value="seniors">Senior Residents Only</option>
+                            <option value="volunteers">Volunteers Only</option>
+                            <option value="families">Family Representatives Only</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="message-subject">Subject:</label><br>
+                        <input type="text" id="message-subject" name="message_subject" size="50" required>
+                    </p>
+                    <p>
+                        <label for="message-body">Message Body:</label><br>
+                        <textarea id="message-body" name="message_body" rows="4" cols="60" required></textarea>
+                    </p>
+                    <p>
+                        <button type="submit">Send Announcement</button>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+        <br>
+        <section id="manage-events">
+            <h2>Manage Community Events & Activities</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Event Name</th>
+                        <th>Location</th>
+                        <th>Target Group</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>July 01, 2026</td>
+                        <td>Free Flu Vaccination Drive</td>
+                        <td>Municipal Health Center</td>
+                        <td>All Seniors</td>
+                        <td><button type="button">Edit</button> <button type="button">Cancel</button></td>
+                    </tr>
+                    <tr>
+                        <td>July 15, 2026</td>
+                        <td>Senior Wellness & Zumba</td>
+                        <td>Barangay Plaza</td>
+                        <td>All Seniors</td>
+                        <td><button type="button">Edit</button> <button type="button">Cancel</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <button type="button">+ Create New Event</button>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+    </footer>
 </body>
 </html>
