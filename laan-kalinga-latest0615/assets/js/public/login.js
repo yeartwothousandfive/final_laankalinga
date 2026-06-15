@@ -39,6 +39,7 @@
 
       // update register link based on role
       document.getElementById('register-link').href = registerRoutes[selectedRole];
+      document.getElementById('role-input').value = selectedRole;
     });
   });
 
@@ -140,6 +141,7 @@
     }
 
     summaryBox.hidden = true;
+    form.submit();
 
     // simulate server response here
     // replace with actual fetch/POST call.
@@ -157,7 +159,6 @@
     } else if (simulatedResponse === 'locked') {
       showError('error-locked', true);
     }
-    form.submit();
   });
 
 })();

@@ -32,15 +32,12 @@
         <h2 id="role-heading">Select a role</h2>
         <div class="role-grid">
           <button type="button" class="role-btn" data-role="senior" aria-pressed="false">
-            <input type="hidden" name="role" value="senior">
             Senior Citizen
           </button>
           <button type="button" class="role-btn" data-role="family" aria-pressed="false">
-            <input type="hidden" name="role" value="family">
             Family Representative
           </button>
           <button type="button" class="role-btn" data-role="volunteer" aria-pressed="false">
-            <input type="hidden" name="role" value="volunteer">
             Volunteer
           </button>
         </div>
@@ -59,6 +56,7 @@
         </div>
 
         <form id="login-form" action="../../php/signin.php" method="POST" novalidate>
+          <input type="hidden" id="role-input" name="role" value="">
 
           <div class="field-group" id="group-email">
             <label for="email">Email address <span aria-label="required">*</span></label>

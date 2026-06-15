@@ -11,6 +11,7 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
 
 $email = $_POST['email'] ?? '';
 $pass = $_POST['password'] ?? '';
+$role = $_POST['role'] ?? '';
 
 if(!$email || !$pass){
     die("Missing fields");
@@ -38,7 +39,7 @@ $user = $result->fetch_assoc();
 
 // VERIFY PASSWORD 
 
-if(!password_verify($pass, $user['password'])){
+if(!password_verify($pass, $user['password_hash'])){
     header("Location: ../pages/public/login.php?error=invalid");
     exit;
 }
@@ -51,13 +52,20 @@ $_SESSION['role'] = $user['role'];
 
 // REDIRECT BASED ON ROLE 
 
-if($user['role'] === 'senior'){
-    header("Location: ../senior/dashboard.html");
-    exit;
+switch ($user['role']) {
+    case 'senior':
+        header("Location: ../senior/dashboard.html");
+        break;
+    case 'family':
+        header("Location: ../senior/fam-dashboard.html");
+        break;
+    case 'volunteer':
+        header("Location: ../volunteer/dashboard.html");
+        break;
+    default:
+        header("Location: ../public/login.php?error=invalid");
+        break;
 }
-else{
-    header("Location: ../public/login.php?error=invalid");
-    exit;
-}
+exit;
 
 ?>
