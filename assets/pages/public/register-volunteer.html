@@ -7,544 +7,449 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="register-header">
-            <a href="index.html" class="logo-link">
-                <img src="../../images/logo.png" alt="Laankalinga Logo" class="logo">
-            </a>
-            <h1>Volunteer Registration</h1>
-            <p>Join our community of compassionate volunteers</p>
-        </header>
 
-        <nav class="account-type-nav">
-            <p>Need a different account type?</p>
-            <ul>
-                <li><a href="register-senior.html">Senior Resident</a></li>
-                <li><a href="register-family.html">Family Representative</a></li>
-                <li><a href="register-staff.html">Staff Member</a></li>
-            </ul>
-        </nav>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-        <form action="#" method="POST" enctype="multipart/form-data">
-            <!-- Step 1: Personal Information -->
-            <fieldset class="form-step">
-                <legend>Personal Information</legend>
+  <div class="banner-error" id="banner-offline" role="alert" aria-live="assertive" hidden>
+    <p>No internet connection. Please check your network and try again.</p>
+  </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="volunteer-profile-pic">Profile Picture</label>
-                        <input type="file" id="volunteer-profile-pic" name="profile_pic" accept="image/*">
-                        <small>Upload a clear, recent photo (JPG or PNG)</small>
-                    </div>
-                </div>
+  <div class="banner-warning" id="banner-session" role="alert" aria-live="assertive" hidden>
+    <p>Your session expired. Please log in again.</p>
+  </div>
 
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-first-name">First Name <span class="required">*</span></label>
-                        <input type="text" id="volunteer-first-name" name="first_name" required placeholder="Enter first name">
-                    </div>
+  <main id="main-content">
 
-                    <div class="form-group">
-                        <label for="volunteer-middle-name">Middle Name</label>
-                        <input type="text" id="volunteer-middle-name" name="middle_name" placeholder="Enter middle name">
-                    </div>
-                </div>
+    <header class="register-header">
+      <a href="index.html" class="logo-link">
+        <img src="../../images/logo.png" alt="LaanKalinga Logo" class="logo">
+      </a>
+      <h1>Volunteer Registration</h1>
+      <p class="hero-barangay">Barangay XXX, Quezon City</p>
+    </header>
 
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-last-name">Last Name <span class="required">*</span></label>
-                        <input type="text" id="volunteer-last-name" name="last_name" required placeholder="Enter last name">
-                    </div>
+    <nav class="account-type-nav" aria-label="Other registration types">
+      <p>Registering as someone else?</p>
+      <ul>
+        <li><a href="register-senior.html">Senior Citizen</a></li>
+        <li><a href="register-family.html">Family Representative</a></li>
+      </ul>
+    </nav>
 
-                    <div class="form-group">
-                        <label for="volunteer-suffix">Suffix</label>
-                        <select id="volunteer-suffix" name="suffix">
-                            <option value="">None</option>
-                            <option value="jr">Jr.</option>
-                            <option value="sr">Sr.</option>
-                            <option value="ii">II</option>
-                            <option value="iii">III</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="volunteer-email" name="email" required placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-phone">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="volunteer-phone" name="phone" required placeholder="09XX XXX XXXX" pattern="09\d{2} \d{3} \d{4}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-address">Home Address <span class="required">*</span></label>
-                    <textarea id="volunteer-address" name="address" rows="2" required placeholder="House/Unit No., Street, Barangay, City/Municipality, Province, ZIP Code"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-region">Region <span class="required">*</span></label>
-                    <select id="volunteer-region" name="region" required>
-                        <option value="">Select region</option>
-                        <option value="ncr">NCR – National Capital Region</option>
-                        <option value="car">CAR – Cordillera Administrative Region</option>
-                        <option value="r1">Region I – Ilocos Region</option>
-                        <option value="r2">Region II – Cagayan Valley</option>
-                        <option value="r3">Region III – Central Luzon</option>
-                        <option value="r4a">Region IV-A – CALABARZON</option>
-                        <option value="r4b">Region IV-B – MIMAROPA</option>
-                        <option value="r5">Region V – Bicol Region</option>
-                        <option value="r6">Region VI – Western Visayas</option>
-                        <option value="r7">Region VII – Central Visayas</option>
-                        <option value="r8">Region VIII – Eastern Visayas</option>
-                        <option value="r9">Region IX – Zamboanga Peninsula</option>
-                        <option value="r10">Region X – Northern Mindanao</option>
-                        <option value="r11">Region XI – Davao Region</option>
-                        <option value="r12">Region XII – SOCCSKSARGEN</option>
-                        <option value="r13">Region XIII – Caraga</option>
-                        <option value="barmm">BARMM – Bangsamoro Autonomous Region in Muslim Mindanao</option>
-                    </select>
-                </div>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-philsys-id">PhilSys ID / National ID Number</label>
-                        <input type="text" id="volunteer-philsys-id" name="philsys_id" placeholder="Enter PhilSys Reference Number">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-occupation">Occupation / Student Status</label>
-                        <select id="volunteer-occupation" name="occupation">
-                            <option value="">Select</option>
-                            <option value="student-college">College Student</option>
-                            <option value="student-senior-high">Senior High School Student</option>
-                            <option value="employed">Employed</option>
-                            <option value="self-employed">Self-Employed</option>
-                            <option value="unemployed">Unemployed</option>
-                            <option value="retired">Retired</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-school-org">School / Organization (if applicable)</label>
-                    <input type="text" id="volunteer-school-org" name="school_org" placeholder="e.g., University of the Philippines, Rotary Club, NSTP unit">
-                    <small>Required if volunteering as part of NSTP, OJT, or community service requirements</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-nstp-type">Volunteering as part of a program?</label>
-                    <select id="volunteer-nstp-type" name="program_type">
-                        <option value="">Select if applicable</option>
-                        <option value="nstp-cwts">NSTP – CWTS (Civic Welfare Training Service)</option>
-                        <option value="ojt">OJT / Practicum</option>
-                        <option value="community-service">Barangay / Community Service</option>
-                        <option value="church">Church / Parish Program</option>
-                        <option value="ngo">NGO / Civic Organization</option>
-                        <option value="independent">Independent / Personal Initiative</option>
-                    </select>
-                </div>
-            </fieldset>
-
-            <!-- Step 2: Emergency Contact -->
-            <fieldset class="form-step">
-                <legend>Emergency Contact Information</legend>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-emergency-name">Full Name <span class="required">*</span></label>
-                        <input type="text" id="volunteer-emergency-name" name="emergency_contact_name" required placeholder="Enter full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-emergency-relationship">Relationship <span class="required">*</span></label>
-                        <select id="volunteer-emergency-relationship" name="emergency_contact_relationship" required>
-                            <option value="">Select relationship</option>
-                            <option value="spouse">Asawa / Spouse</option>
-                            <option value="parent">Magulang / Parent</option>
-                            <option value="sibling">Kapatid / Sibling</option>
-                            <option value="child">Anak / Child</option>
-                            <option value="relative">Kamag-anak / Relative</option>
-                            <option value="friend">Kaibigan / Friend</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-emergency-phone">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="volunteer-emergency-phone" name="emergency_contact_phone" required placeholder="09XX XXX XXXX">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-emergency-email">Email Address</label>
-                        <input type="email" id="volunteer-emergency-email" name="emergency_contact_email" placeholder="contact@email.com">
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Step 3: Verification -->
-            <fieldset class="form-step">
-                <legend>Verification &amp; Background Check</legend>
-
-                <div class="form-group">
-                    <label for="volunteer-government-id">Government-Issued ID Upload <span class="required">*</span></label>
-                    <input type="file" id="volunteer-government-id" name="government_id" accept=".pdf,.jpg,.jpeg,.png" required>
-                    <small>Upload a clear scan or photo of any valid Philippine government ID: PhilSys / National ID, Passport, Driver's License (LTO), SSS / GSIS ID, Voter's ID (COMELEC), PRC ID, Postal ID, or School ID with Certificate of Enrollment (for students)</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-nbi-clearance">NBI Clearance or Police Clearance</label>
-                    <input type="file" id="volunteer-nbi-clearance" name="nbi_clearance" accept=".pdf,.jpg,.jpeg,.png">
-                    <small>Required for volunteers aged 18 and above. You may submit this after your initial application is reviewed.</small>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="background_check_consent" required>
-                        <span>I consent to an NBI/police background check as part of the volunteer application process, in accordance with applicable Philippine laws <span class="required">*</span></span>
-                    </label>
-                    <small>Background checks help ensure the safety and welfare of our senior residents</small>
-                </div>
-            </fieldset>
-
-            <!-- Step 4: Availability -->
-            <fieldset class="form-step">
-                <legend>Availability Schedule</legend>
-
-                <p>Select your available days and time slots:</p>
-
-                <div class="availability-grid">
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="monday"> Monday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="monday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="monday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="monday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="tuesday"> Tuesday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="tuesday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="tuesday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="tuesday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="wednesday"> Wednesday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="wednesday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="wednesday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="wednesday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="thursday"> Thursday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="thursday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="thursday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="thursday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="friday"> Friday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="friday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="friday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="friday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="saturday"> Saturday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="saturday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="saturday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="saturday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-
-                    <div class="day-row">
-                        <label class="day-label">
-                            <input type="checkbox" name="availability_days" value="sunday"> Sunday
-                        </label>
-                        <div class="time-slots">
-                            <label><input type="checkbox" name="sunday_morning"> Morning (8AM–12PM)</label>
-                            <label><input type="checkbox" name="sunday_afternoon"> Afternoon (12PM–5PM)</label>
-                            <label><input type="checkbox" name="sunday_evening"> Evening (5PM–9PM)</label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Step 5: Skills & Interests -->
-            <fieldset class="form-step">
-                <legend>Skills &amp; Interests</legend>
-
-                <div class="form-group">
-                    <label>Areas of Interest <span class="required">*</span></label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="companionship"> Companionship (Kuwentuhan, Pakikinig, Samahan)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="transportation"> Transportation (Escort to appointments, Errands)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="tech-help"> Technology Help (Smartphones, Video Calls, Online Services)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="activity-facilitation"> Activity Facilitation (Palaro, Crafts, Exercises, Sining)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="meal-prep"> Meal Preparation Assistance (Pagluluto)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="light-housekeeping"> Light Housekeeping (Paglilinis)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="shopping"> Grocery / Palengke Shopping Assistance
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="reading"> Reading Assistance / Pagtulong sa Pagbabasa
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="religious"> Religious / Spiritual Companionship (Misa, Dasal, Pag-aaral ng Bibliya)
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests" value="pet-care"> Pet Care Assistance (Pag-aalaga ng Alagang Hayop)
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Languages / Dialects Spoken</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="filipino"> Filipino / Tagalog</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="english"> English</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="cebuano"> Cebuano / Bisaya</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="ilocano"> Ilocano</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="hiligaynon"> Hiligaynon / Ilonggo</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="waray"> Waray</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="kapampangan"> Kapampangan</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="bicolano"> Bicolano</label>
-                        <label class="checkbox-label"><input type="checkbox" name="languages" value="other"> Other</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-other-skills">Other Skills or Talents</label>
-                    <textarea id="volunteer-other-skills" name="other_skills" rows="3" placeholder="e.g., plays guitar, knows Sign Language (FSL), teaching, medical background, hairdressing, massage therapy"></textarea>
-                </div>
-            </fieldset>
-
-            <!-- Step 6: Certifications -->
-            <fieldset class="form-step">
-                <legend>Certifications</legend>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="has_cpr_certification" id="has-cpr" onchange="toggleCertificationFields()">
-                        <span>I have CPR / BLS Certification</span>
-                    </label>
-                    <div id="cpr-details" class="certification-details" style="display: none;">
-                        <div class="form-row two-column">
-                            <div class="form-group">
-                                <label for="volunteer-cpr-issuer">Certification Issuer</label>
-                                <input type="text" id="volunteer-cpr-issuer" name="cpr_issuer" placeholder="e.g., Philippine Red Cross, DOH-accredited provider">
-                            </div>
-                            <div class="form-group">
-                                <label for="volunteer-cpr-expiry">Expiration Date</label>
-                                <input type="date" id="volunteer-cpr-expiry" name="cpr_expiry">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="volunteer-cpr-upload">Upload Certification Document</label>
-                            <input type="file" id="volunteer-cpr-upload" name="cpr_certificate" accept=".pdf,.jpg,.jpeg,.png">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="has_first_aid_certification" id="has-first-aid" onchange="toggleFirstAidFields()">
-                        <span>I have First Aid Certification</span>
-                    </label>
-                    <div id="first-aid-details" class="certification-details" style="display: none;">
-                        <div class="form-row two-column">
-                            <div class="form-group">
-                                <label for="volunteer-first-aid-issuer">Certification Issuer</label>
-                                <input type="text" id="volunteer-first-aid-issuer" name="first_aid_issuer" placeholder="e.g., Philippine Red Cross, DOLE-accredited provider">
-                            </div>
-                            <div class="form-group">
-                                <label for="volunteer-first-aid-expiry">Expiration Date</label>
-                                <input type="date" id="volunteer-first-aid-expiry" name="first_aid_expiry">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="volunteer-first-aid-upload">Upload Certification Document</label>
-                            <input type="file" id="volunteer-first-aid-upload" name="first_aid_certificate" accept=".pdf,.jpg,.jpeg,.png">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="volunteer-other-certifications">Other Relevant Certifications</label>
-                    <textarea id="volunteer-other-certifications" name="other_certifications" rows="3" placeholder="e.g., TESDA NC certifications, Caregiving NC II, Social Work degree, DSWD-accredited trainings, NSTP completion"></textarea>
-                </div>
-            </fieldset>
-
-            <!-- Step 7: References -->
-            <fieldset class="form-step">
-                <legend>Character References</legend>
-
-                <p><small>References must not be immediate family members. Acceptable references include former employers, teachers/professors, barangay officials, or community/church leaders.</small></p>
-
-                <h3>Reference 1</h3>
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-ref1-name">Full Name <span class="required">*</span></label>
-                        <input type="text" id="volunteer-ref1-name" name="reference1_name" required placeholder="Enter full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-ref1-relationship">Relationship <span class="required">*</span></label>
-                        <input type="text" id="volunteer-ref1-relationship" name="reference1_relationship" required placeholder="e.g., Former Employer, Professor, Barangay Captain">
-                    </div>
-                </div>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-ref1-phone">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="volunteer-ref1-phone" name="reference1_phone" required placeholder="09XX XXX XXXX">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-ref1-email">Email Address</label>
-                        <input type="email" id="volunteer-ref1-email" name="reference1_email" placeholder="reference@email.com">
-                    </div>
-                </div>
-
-                <h3>Reference 2</h3>
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-ref2-name">Full Name <span class="required">*</span></label>
-                        <input type="text" id="volunteer-ref2-name" name="reference2_name" required placeholder="Enter full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-ref2-relationship">Relationship <span class="required">*</span></label>
-                        <input type="text" id="volunteer-ref2-relationship" name="reference2_relationship" required placeholder="e.g., Teacher, Parish Priest, Supervisor">
-                    </div>
-                </div>
-
-                <div class="form-row two-column">
-                    <div class="form-group">
-                        <label for="volunteer-ref2-phone">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="volunteer-ref2-phone" name="reference2_phone" required placeholder="09XX XXX XXXX">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="volunteer-ref2-email">Email Address</label>
-                        <input type="email" id="volunteer-ref2-email" name="reference2_email" placeholder="reference@email.com">
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Step 8: Motivation Statement -->
-            <fieldset class="form-step">
-                <legend>Motivation Statement</legend>
-
-                <div class="form-group">
-                    <label for="volunteer-motivation">Bakit gusto mong mag-volunteer? / Why do you want to volunteer with us? <span class="required">*</span></label>
-                    <textarea id="volunteer-motivation" name="motivation_statement" rows="5" required placeholder="(Share your motivation, relevant experience, and what you hope to contribute to our senior residents.)"></textarea>
-                </div>
-            </fieldset>
-
-            <!-- Terms and Conditions -->
-            <fieldset class="form-step">
-                <legend>Terms and Conditions</legend>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms_accepted" required>
-                        <span>I have read and agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span></span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="accuracy_confirmed" required>
-                        <span>I confirm that all information provided is accurate and complete <span class="required">*</span></span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="data_privacy_consent" required>
-                        <span>I consent to the collection and processing of my personal data in accordance with the <strong><a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html" target="_blank">Data Privacy Act of 2012 (R.A. 10173)</a></strong> and the facility's Privacy Notice <span class="required">*</span></span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="code_of_conduct" required>
-                        <span>I agree to abide by the volunteer code of conduct, maintain the confidentiality of resident information, and uphold the dignity and rights of senior citizens as protected under <strong><a href="https://lawphil.net/statutes/repacts/ra2010/ra_9994_2010.html" target="_blank">R.A. 9994</a></strong> <span class="required">*</span></span>
-                    </label>
-                </div>
-            </fieldset>
-
-            <!-- Submit Button -->
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Submit Volunteer Application</button>
-                <a href="login.html" class="btn btn-secondary">Already have an account? Login</a>
-            </div>
-        </form>
-
-        <footer class="form-footer">
-            <p>&copy; 2026 Laankalinga. All rights reserved.</p>
-            <nav>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Support</a>
-            </nav>
-        </footer>
+    <div class="error-summary" id="error-summary" role="alert" aria-live="assertive" hidden>
+      <p class="error-summary__heading">Please fix these before continuing:</p>
+      <ul class="error-summary__list" id="error-summary-list"></ul>
     </div>
 
-    <script>
-        function toggleCertificationFields() {
-            var checkbox = document.getElementById('has-cpr');
-            var details = document.getElementById('cpr-details');
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
+    <form id="register-volunteer-form" action="#" method="POST" enctype="multipart/form-data" novalidate>
 
-        function toggleFirstAidFields() {
-            var checkbox = document.getElementById('has-first-aid');
-            var details = document.getElementById('first-aid-details');
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
-    </script>
+      <!-- STEP 1: PERSONAL INFORMATION -->
+      <fieldset class="form-step">
+        <legend>Step 1 of 4 — Personal Information</legend>
+
+        <div class="field-group">
+          <label for="profile-pic">Profile picture</label>
+          <small>Upload a clear, recent photo. Accepted: JPG, PNG.</small>
+          <input type="file" id="profile-pic" name="profile_pic" accept=".jpg,.jpeg,.png">
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-first-name">
+            <label for="first-name">First name <span aria-label="required">*</span></label>
+            <input type="text" id="first-name" name="first_name" required placeholder="e.g. Juan"
+                   autocomplete="given-name" aria-describedby="error-first-name">
+            <span class="error-msg" id="error-first-name" aria-live="polite" hidden>
+              Please enter your first name.
+            </span>
+          </div>
+
+          <div class="field-group">
+            <label for="middle-name">Middle name</label>
+            <input type="text" id="middle-name" name="middle_name" placeholder="e.g. Garcia" autocomplete="additional-name">
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-last-name">
+            <label for="last-name">Last name <span aria-label="required">*</span></label>
+            <input type="text" id="last-name" name="last_name" required placeholder="e.g. Dela Cruz"
+                   autocomplete="family-name" aria-describedby="error-last-name">
+            <span class="error-msg" id="error-last-name" aria-live="polite" hidden>
+              Please enter your last name.
+            </span>
+          </div>
+
+          <div class="field-group">
+            <label for="suffix">Suffix</label>
+            <select id="suffix" name="suffix">
+              <option value="">None</option>
+              <option value="jr">Jr.</option>
+              <option value="sr">Sr.</option>
+              <option value="ii">II</option>
+              <option value="iii">III</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-email">
+            <label for="email">Email address <span aria-label="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="example@email.com"
+                   autocomplete="email" aria-describedby="error-email">
+            <span class="error-msg" id="error-email" aria-live="polite" hidden>
+              Please enter a valid email address.
+            </span>
+          </div>
+
+          <div class="field-group" id="group-phone">
+            <label for="phone">Mobile number <span aria-label="required">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="09XX XXX XXXX"
+                   autocomplete="tel" aria-describedby="error-phone">
+            <span class="error-msg" id="error-phone" aria-live="polite" hidden>
+              Please enter a valid mobile number (e.g. 09171234567).
+            </span>
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-house-number">
+            <label for="house-number">House / unit no. <span aria-label="required">*</span></label>
+            <input type="text" id="house-number" name="house_number" required
+                   aria-describedby="error-house-number">
+            <span class="error-msg" id="error-house-number" aria-live="polite" hidden>
+              Please enter your house or unit number.
+            </span>
+          </div>
+
+          <div class="field-group" id="group-street">
+            <label for="street">Street <span aria-label="required">*</span></label>
+            <input type="text" id="street" name="street" required
+                   aria-describedby="error-street">
+            <span class="error-msg" id="error-street" aria-live="polite" hidden>
+              Please enter your street name.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-barangay">
+            <label for="barangay-search">Barangay <span aria-label="required">*</span></label>
+            <input type="text" id="barangay-search" name="barangay_search"
+                   list="barangay-list" autocomplete="off" aria-describedby="error-barangay">
+            <datalist id="barangay-list"></datalist>
+            <input type="hidden" id="barangay" name="barangay">
+            <span class="error-msg" id="error-barangay" aria-live="polite" hidden>
+              Please select a valid barangay in Quezon City.
+            </span>
+          </div>
+
+          <div class="field-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" value="Quezon City" readonly
+                   autocomplete="address-level2">
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group">
+            <label for="province">Province</label>
+            <input type="text" id="province" name="province" value="Metro Manila" readonly>
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group">
+            <label for="occupation">Occupation</label>
+            <select id="occupation" name="occupation">
+              <option value="">— Select —</option>
+              <option value="student">Student</option>
+              <option value="employed">Employed</option>
+              <option value="self-employed">Self-employed</option>
+              <option value="unemployed">Unemployed</option>
+              <option value="retired">Retired</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="program-type">Volunteering as part of a program?</label>
+            <select id="program-type" name="program_type">
+              <option value="">Select if applicable</option>
+              <option value="nstp-cwts">NSTP – CWTS</option>
+              <option value="ojt">OJT / Practicum</option>
+              <option value="community-service">Barangay / Community Service</option>
+              <option value="church">Church / Parish Program</option>
+              <option value="ngo">NGO / Civic Organization</option>
+              <option value="independent">Independent / Personal Initiative</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="school-org">School / organization (if applicable)</label>
+          <small>Required if volunteering for NSTP, OJT, or community service.</small>
+          <input type="text" id="school-org" name="school_org">
+        </div>
+
+        <h3>Emergency Contact</h3>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-emergency-name">
+            <label for="emergency-name">Full name <span aria-label="required">*</span></label>
+            <input type="text" id="emergency-name" name="emergency_contact_name" required
+                   aria-describedby="error-emergency-name">
+            <span class="error-msg" id="error-emergency-name" aria-live="polite" hidden>
+              Please enter the full name of your emergency contact.
+            </span>
+          </div>
+
+          <div class="field-group" id="group-emergency-relationship">
+            <label for="emergency-relationship">Relationship <span aria-label="required">*</span></label>
+            <select id="emergency-relationship" name="emergency_contact_relationship" required
+                    aria-describedby="error-emergency-relationship">
+              <option value="">— Select —</option>
+              <option value="spouse">Spouse</option>
+              <option value="parent">Parent</option>
+              <option value="sibling">Sibling</option>
+              <option value="child">Child</option>
+              <option value="relative">Relative</option>
+              <option value="friend">Friend</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="error-msg" id="error-emergency-relationship" aria-live="polite" hidden>
+              Please select a relationship.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-row two-column">
+          <div class="field-group" id="group-emergency-phone">
+            <label for="emergency-phone">Mobile number <span aria-label="required">*</span></label>
+            <input type="tel" id="emergency-phone" name="emergency_contact_phone" required
+                   aria-describedby="error-emergency-phone">
+            <span class="error-msg" id="error-emergency-phone" aria-live="polite" hidden>
+              Please enter a valid mobile number.
+            </span>
+          </div>
+
+          <div class="field-group">
+            <label for="emergency-email">Email <small>Optional</small></label>
+            <input type="email" id="emergency-email" name="emergency_contact_email">
+          </div>
+        </div>
+
+      </fieldset>
+
+      <!-- STEP 2: VERIFICATION & AVAILABILITY -->
+      <fieldset class="form-step">
+        <legend>Step 2 of 4 — Verification &amp; Availability</legend>
+
+        <div class="field-group" id="group-government-id">
+          <label for="government-id">Government-issued ID <span aria-label="required">*</span></label>
+          <small>Accepted: PhilSys / National ID, Passport, Driver's License, SSS / GSIS, Voter's ID, PRC ID, Postal ID, or School ID with Certificate of Enrollment.</small>
+          <input type="file" id="government-id" name="government_id"
+                 accept=".pdf,.jpg,.jpeg,.png" required aria-describedby="error-government-id">
+          <span class="error-msg" id="error-government-id" aria-live="polite" hidden>
+            Please upload a valid government-issued ID.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-background-check">
+          <label class="checkbox-label">
+            <input type="checkbox" id="background-check" name="background_check_consent" required
+                   aria-describedby="error-background-check">
+            <span>I consent to a background check as part of the volunteer application process.</span>
+          </label>
+          <span class="error-msg" id="error-background-check" aria-live="polite" hidden>
+            You must consent to continue.
+          </span>
+        </div>
+
+        <h3>Availability</h3>
+        <p>Select the days you're usually available:</p>
+
+        <div class="field-group" id="group-availability-days">
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="monday"> Monday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="tuesday"> Tuesday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="wednesday"> Wednesday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="thursday"> Thursday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="friday"> Friday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="saturday"> Saturday</label>
+            <label class="checkbox-label"><input type="checkbox" name="availability_days" value="sunday"> Sunday</label>
+          </div>
+          <span class="error-msg" id="error-availability-days" aria-live="polite" hidden>
+            Please select at least one day.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-availability-time">
+          <label for="availability-time">Preferred time <span aria-label="required">*</span></label>
+          <select id="availability-time" name="availability_time" required
+                  aria-describedby="error-availability-time">
+            <option value="">— Select —</option>
+            <option value="morning">Morning (8AM–12PM)</option>
+            <option value="afternoon">Afternoon (12PM–5PM)</option>
+            <option value="evening">Evening (5PM–9PM)</option>
+            <option value="flexible">Flexible / Any time</option>
+          </select>
+          <span class="error-msg" id="error-availability-time" aria-live="polite" hidden>
+            Please select your preferred time.
+          </span>
+        </div>
+
+      </fieldset>
+
+      <!-- STEP 3: SKILLS, INTERESTS & MOTIVATION -->
+      <fieldset class="form-step">
+        <legend>Step 3 of 4 — Skills, Interests &amp; Motivation</legend>
+
+        <div class="field-group" id="group-interests">
+          <label>Areas of interest <span aria-label="required">*</span><small>At least one</small></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="companionship"> Companionship (Kuwentuhan, Pakikinig, Samahan)</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="transportation"> Transportation (Escort to appointments, Errands)</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="tech-help"> Technology Help (Smartphones, Video Calls)</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="activity-facilitation"> Activity Facilitation (Palaro, Crafts, Exercises)</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="light-housekeeping"> Light Housekeeping</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="shopping"> Grocery / Palengke Shopping Assistance</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="reading"> Reading Assistance</label>
+            <label class="checkbox-label"><input type="checkbox" name="interests" value="religious"> Religious / Spiritual Companionship</label>
+          </div>
+          <span class="error-msg" id="error-interests" aria-live="polite" hidden>
+            Please select at least one area of interest.
+          </span>
+        </div>
+
+        <div class="field-group">
+          <label>Languages / dialects spoken</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="filipino"> Filipino / Tagalog</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="english"> English</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="cebuano"> Cebuano / Bisaya</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="ilocano"> Ilocano</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="hiligaynon"> Hiligaynon / Ilonggo</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="waray"> Waray</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="kapampangan"> Kapampangan</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="bicolano"> Bicolano</label>
+            <label class="checkbox-label"><input type="checkbox" name="languages" value="other"> Other</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="other-skills">Other skills or talents</label>
+          <small>e.g. plays guitar, knows Sign Language (FSL), teaching, medical background</small>
+          <textarea id="other-skills" name="other_skills" rows="3"></textarea>
+        </div>
+
+        <div class="field-group" id="group-volunteer-reason">
+          <label for="volunteer-reason">Why do you want to volunteer? <span aria-label="required">*</span></label>
+          <select id="volunteer-reason" name="volunteer_reason" required
+                  aria-describedby="error-volunteer-reason">
+            <option value="">— Select —</option>
+            <option value="help-community">To help my community</option>
+            <option value="personal-growth">Personal growth or experience</option>
+            <option value="school-requirement">School requirement (NSTP / OJT)</option>
+            <option value="faith">Religious / faith calling</option>
+            <option value="other">Other</option>
+          </select>
+          <span class="error-msg" id="error-volunteer-reason" aria-live="polite" hidden>
+            Please select a reason.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-volunteer-reason-other" hidden>
+          <label for="volunteer-reason-other">Please specify</label>
+          <small>If not applicable, you may write N/A.</small>
+          <input type="text" id="volunteer-reason-other" name="volunteer_reason_other"
+                 aria-describedby="error-volunteer-reason-other">
+          <span class="error-msg" id="error-volunteer-reason-other" aria-live="polite" hidden>
+            Please specify or write N/A.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-motivation">
+          <label for="motivation">Tell us more about your motivation <span aria-label="required">*</span></label>
+          <small>Share your experience and what you hope to contribute.</small>
+          <textarea id="motivation" name="motivation_statement" rows="5" required
+                    aria-describedby="error-motivation"></textarea>
+          <span class="error-msg" id="error-motivation" aria-live="polite" hidden>
+            Please share why you want to volunteer.
+          </span>
+        </div>
+
+      </fieldset>
+
+      <!-- STEP 4: TERMS -->
+      <fieldset class="form-step">
+        <legend>Step 4 of 4: Terms and Conditions</legend>
+
+        <div class="field-group" id="group-terms">
+          <label class="checkbox-label">
+            <input type="checkbox" id="terms" name="terms_accepted" required
+                   aria-describedby="error-terms">
+            <span>I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>. <span aria-label="required">*</span></span>
+          </label>
+          <span class="error-msg" id="error-terms" aria-live="polite" hidden>
+            You must agree to the terms to continue.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-accuracy">
+          <label class="checkbox-label">
+            <input type="checkbox" id="accuracy" name="accuracy_confirmed" required
+                   aria-describedby="error-accuracy">
+            <span>All information I provided is true and accurate. <span aria-label="required">*</span></span>
+          </label>
+          <span class="error-msg" id="error-accuracy" aria-live="polite" hidden>
+            Please confirm your information is accurate.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-data-privacy">
+          <label class="checkbox-label">
+            <input type="checkbox" id="data-privacy" name="data_privacy_consent" required
+                   aria-describedby="error-data-privacy">
+            <span>I consent to the collection and use of my personal data under the <strong>Data Privacy Act of 2012 (R.A. 10173)</strong>. <span aria-label="required">*</span></span>
+          </label>
+          <span class="error-msg" id="error-data-privacy" aria-live="polite" hidden>
+            Please give your consent to continue.
+          </span>
+        </div>
+
+        <div class="field-group" id="group-code-of-conduct">
+          <label class="checkbox-label">
+            <input type="checkbox" id="code-of-conduct" name="code_of_conduct" required
+                   aria-describedby="error-code-of-conduct">
+            <span>I agree to follow the volunteer code of conduct and uphold the dignity and rights of senior citizens under <strong>R.A. 9994</strong>. <span aria-label="required">*</span></span>
+          </label>
+          <span class="error-msg" id="error-code-of-conduct" aria-live="polite" hidden>
+            You must agree to the code of conduct.
+          </span>
+        </div>
+
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Submit Application</button>
+        <a href="login.html" class="btn-secondary">Already have an account? Sign in</a>
+      </div>
+
+    </form>
+
+    <div id="register-success" hidden>
+      <h2>Application submitted!</h2>
+      <p>We will review your application and contact you within 1–2 business days.</p>
+      <a href="login.html" class="btn-primary">Go to Login</a>
+    </div>
+
+  </main>
+
+  <footer class="form-footer">
+    <p>&copy; 2026 LaanKalinga. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/public/register-volunteer.js"></script>
+
 </body>
 </html>
