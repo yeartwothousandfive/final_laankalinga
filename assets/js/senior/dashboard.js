@@ -1,6 +1,7 @@
 (function () {
 
   // offline / session banners 
+
   const bannerOffline = document.getElementById('banner-offline');
   window.addEventListener('offline', () => { bannerOffline.hidden = false; });
   window.addEventListener('online',  () => { bannerOffline.hidden = true;  });
@@ -13,6 +14,7 @@
 
 
   // zoom controls 
+
   let zoomLevel = parseInt(localStorage.getItem('zoomLevel') || '100', 10);
 
   function applyZoom() {
@@ -34,6 +36,7 @@
 
 
   // logout 
+
   document.getElementById('logout-link').addEventListener('click', e => {
     e.preventDefault();
     // TODO: POST /api/logout, then redirect
@@ -42,52 +45,96 @@
 
 
   // simulated data 
-  // replace with actual fetch from /api/senior/me or similar.
+  /* TODO: replace with actual fetch from GET /api/me
+   Expected response shape:
+   {
+     role: 'senior' | 'family',
+     name: string,
+     linkedSeniors: [          ← always an array; seniors have one entry (themselves)
+       {
+         id: string,
+         name: string,
+         appointment: { ... } | null
+       }
+     ]
+   } */
 
-  const currentSenior = {
-    name: 'Jose Reyes',
-    appointment: {
-      date:           'Lunes, Hunyo 15, 2026',
-      isoDate:        '2026-06-15',
-      time:           '9:00 AM',
-      service:        'Pangkalahatang Pagsusuri / General Check-up',
-      location:       'Sa tahanan / Home Visit',
-      volunteer:      'Maria Santos',
-      volunteerPhone: '09171234567',
-    },
-    // set appointment to null to test the empty state:
-    // appointment: null,
+  const currentUser = {
+    role: 'family',             // change to 'senior' to simulate a senior login
+    name: 'Laura Florante',
+    linkedSeniors: [
+      {
+        id: 's001',
+        name: 'Lauro Florante',
+        appointment: {
+          date:           'Lunes, Hunyo 15, 2026',
+          isoDate:        '2026-06-15',
+          time:           '9:00 AM',
+          service:        'Pangkalahatang Pagsusuri / General Check-up',
+          location:       'Sa tahanan / Home Visit',
+          volunteer:      'Maria Santos',
+          volunteerPhone: '09171234567',
+        },
+      },
+      {
+        id: 's002',
+        name: 'Lourdes Reyes',
+        appointment: null,
+      },
+    ],
   };
+
+   // simulated senior login — uncomment to test:
+  /* const currentUser = {
+    role: 'senior',
+    name: 'Jose Reyes',
+    linkedSeniors: [
+      {
+        id: 's003',
+        name: 'Jose Reyes',
+        appointment: {
+        date:           'Miyerkules, Hunyo 18, 2026',
+        isoDate:        '2026-06-18',
+        time:           '10:00 AM',
+        service:        'Pangkalahatang Pagsusuri / General Check-up',
+        location:       'Sa tahanan / Home Visit',
+        volunteer:      'Ana Reyes',
+        volunteerPhone: '09281234567',
+        },
+      },
+    ],
+  };*/
 
 
   // welcome message 
+
   document.getElementById('welcome-message').innerHTML =
-    `Maligayang Pagbabalik, ${currentSenior.name}! <small>Welcome back!</small>`;
+    `Maligayang Pagbabalik, ${currentUser.name}! <small>Welcome back!</small>`;
 
 
-  // appointment display 
-  const detailsEl = document.getElementById('appointment-details');
-  const emptyEl   = document.getElementById('appointment-empty');
+  // senior switcher 
+  // shown only for family reps who have more than one linked senior
 
-  function renderAppointment(appt) {
-    if (appt) {
-      detailsEl.hidden = false;
-      emptyEl.hidden   = true;
+  const switcherSection = document.getElementById('senior-switcher-section');
+  const switcher        = document.getElementById('senior-switcher');
 
-      // update cancel modal text dynamically
-      document.querySelector('#cancel-modal p').innerHTML =
-        `Kakanselahin ang iyong bisita sa <strong>${appt.date}</strong>. <small>This will cancel your visit on ${appt.date}.</small>`;
-    } else {
-      detailsEl.hidden = true;
-      emptyEl.hidden   = false;
-    }
+  if (currentUser.role === 'family' && currentUser.linkedSeniors.length > 1) {
+    currentUser.linkedSeniors.forEach((senior, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = senior.name;
+      switcher.appendChild(opt);
+    });
+    switcherSection.hidden = false;
   }
 
-  // handles showing/hiding and keeping the cancel modal in sync
-  renderAppointment(currentSenior.appointment);
+  switcher.addEventListener('change', () => {
+    renderSenior(currentUser.linkedSeniors[parseInt(switcher.value, 10)]);
+  });
 
 
   // helpers 
+
   function showError(id, show) {
     const el = document.getElementById(id);
     if (el) el.hidden = !show;
@@ -95,8 +142,7 @@
 
   function isWeekday(dateStr) {
     if (!dateStr) return false;
-    const d = new Date(dateStr + 'T00:00:00');
-    const day = d.getDay();     // 0 = Sun, 6 = Sat
+    const day = new Date(dateStr + 'T00:00:00').getDay();
     return day >= 1 && day <= 5;
   }
 
@@ -111,7 +157,45 @@
   }
 
 
+  // render senior
+
+  let activeSenior = currentUser.linkedSeniors[0];
+
+  function renderSenior(senior) {
+    activeSenior = senior;
+
+    const detailsEl = document.getElementById('appointment-details');
+    const emptyEl   = document.getElementById('appointment-empty');
+
+    if (senior.appointment) {
+      const a = senior.appointment;
+      document.getElementById('appt-senior-name').textContent  = senior.name;
+      document.getElementById('appt-date').textContent         = a.date;
+      document.getElementById('appt-time').textContent         = a.time;
+      document.getElementById('appt-service').textContent      = a.service;
+      document.getElementById('appt-location').textContent     = a.location;
+      document.getElementById('appt-volunteer').textContent    = a.volunteer;
+
+      const phoneLink = document.getElementById('appt-volunteer-phone');
+      phoneLink.href        = 'tel:+63' + a.volunteerPhone.slice(1);
+      phoneLink.textContent = a.volunteerPhone.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
+
+      document.getElementById('cancel-modal-msg').innerHTML =
+        `Kakanselahin ang bisita ni <strong>${senior.name}</strong> sa <strong>${a.date}</strong>. <small>This will cancel the visit on ${a.date}.</small>`;
+
+      detailsEl.hidden = false;
+      emptyEl.hidden   = true;
+    } else {
+      detailsEl.hidden = true;
+      emptyEl.hidden   = false;
+    }
+  }
+
+  renderSenior(activeSenior);
+
+
   // reschedule modal 
+
   const rescheduleModal   = document.getElementById('reschedule-modal');
   const rescheduleDate    = document.getElementById('reschedule-date');
   const rescheduleTime    = document.getElementById('reschedule-time');
@@ -136,14 +220,14 @@
 
     if (!rescheduleDate.value || !isWeekday(rescheduleDate.value)) {
       showError('error-reschedule-date', true);
-      errors.push('Pumili ng valid na araw (Lunes–Biyernes).');
+      errors.push('Pumili ng valid na araw (Lunes–Biyernes). / Please pick a valid weekday.');
     } else {
       showError('error-reschedule-date', false);
     }
 
     if (!rescheduleTime.value) {
       showError('error-reschedule-time', true);
-      errors.push('Pumili ng oras.');
+      errors.push('Pumili ng oras. / Please choose a time.');
     } else {
       showError('error-reschedule-time', false);
     }
@@ -156,40 +240,32 @@
 
     rescheduleErrBox.hidden = true;
 
-    // TODO: PATCH /api/appointments/:id  { date: rescheduleDate.value, time: rescheduleTime.value }
-    // on success: update the displayed date/time and close modal.
+    // TODO: PATCH /api/appointments/:id with { date: rescheduleDate.value, time: rescheduleTime.value }
 
-    // simulated success — update display
-    if (currentSenior.appointment) {
+    // simulated success: update display
+    if (activeSenior.appointment) {
       const newDate = new Date(rescheduleDate.value + 'T00:00:00');
-      const dayName = newDate.toLocaleDateString('fil-PH', {
+      activeSenior.appointment.date    = newDate.toLocaleDateString('fil-PH', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
+      activeSenior.appointment.isoDate = rescheduleDate.value;
 
       const timeMap = {
         '08:00': '8:00 AM',  '09:00': '9:00 AM',  '10:00': '10:00 AM',
         '11:00': '11:00 AM', '13:00': '1:00 PM',  '14:00': '2:00 PM',
         '15:00': '3:00 PM',  '16:00': '4:00 PM',
       };
+      activeSenior.appointment.time = timeMap[rescheduleTime.value] || rescheduleTime.value;
 
-      currentSenior.appointment.date    = dayName;
-      currentSenior.appointment.isoDate = rescheduleDate.value;
-      currentSenior.appointment.time    = timeMap[rescheduleTime.value] || rescheduleTime.value;
-
-      // update the static text nodes in the HTML
-      detailsEl.querySelector('p:nth-child(1)').innerHTML =
-        `<strong>Petsa / Date:</strong> ${currentSenior.appointment.date}`;
-      detailsEl.querySelector('p:nth-child(2)').innerHTML =
-        `<strong>Oras / Time:</strong> ${currentSenior.appointment.time}`;
-
-      renderAppointment(currentSenior.appointment);
+      renderSenior(activeSenior);
     }
 
     closeModal(rescheduleModal);
   });
 
 
-  // cancel modal
+  // cancel modal 
+
   const cancelModal = document.getElementById('cancel-modal');
 
   document.getElementById('btn-cancel').addEventListener('click', () => {
@@ -202,23 +278,24 @@
 
   document.getElementById('btn-cancel-confirm').addEventListener('click', () => {
     // TODO: DELETE /api/appointments/:id
-    // On success: clear appointment and show empty state.
 
-    currentSenior.appointment = null;
-    renderAppointment(null);
+    if (activeSenior.appointment) {
+      activeSenior.appointment = null;
+      renderSenior(activeSenior);
+    }
+
     closeModal(cancelModal);
   });
 
 
-  // close modals on backdrop click 
+  // close modals on backdrop click / ESC 
+
   [rescheduleModal, cancelModal].forEach(modal => {
     modal.addEventListener('click', e => {
       if (e.target === modal) closeModal(modal);
     });
   });
 
-
-  // close modals on ESC 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       if (!rescheduleModal.hidden) closeModal(rescheduleModal);

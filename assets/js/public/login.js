@@ -41,6 +41,18 @@
     });
   });
 
+  const dashboardRoutes = {
+    senior:    '../pages/senior/dashboard.html',
+    family:    '../pages/senior/fam-dashboard.html',
+    volunteer: '../pages/volunteer/dashboard.html'
+  };
+
+  /*
+  if (simulatedResponse === 'success') {
+    window.location.href = dashboardRoutes[selectedRole];
+  }
+  */
+  // password toggle
   const passwordInput = document.getElementById('password');
   const toggleBtn     = document.getElementById('toggle-pw');
   const iconHide      = document.getElementById('icon-hide');
@@ -133,7 +145,7 @@
     // on success: redirect to dashboard
     // on failure: show the right error below
 
-    const simulatedResponse = 'credentials'; // 'success' | 'credentials' | 'not-found' | 'locked'
+    const simulatedResponse = 'success'; // 'success' | 'credentials' | 'not-found' | 'locked'
 
     if (simulatedResponse === 'success') {
       window.location.href = `dashboard-${selectedRole}.html`;

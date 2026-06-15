@@ -25,7 +25,6 @@
         <img src="../../images/logo.png" alt="LaanKalinga Logo" class="logo">
       </a>
       <h1>Pagpaparehistro bilang Miyembro (Elder) <small>Member Registration</small></h1>
-      <p class="hero-barangay">Barangay XXX, Lungsod Quezon</p> 
     </header>
 
     <nav class="account-type-nav" aria-label="Iba pang uri ng pagpaparehistro">
@@ -141,12 +140,13 @@
             <span class="error-msg" id="error-phone" aria-live="polite" hidden>
               Pakisulat ang tamang numero. <small>Please enter a valid mobile number (e.g. 09171234567).</small>
             </span>
+            
           </div>
 
           <div class="field-group" id="group-email">
-            <label for="email">Email <small>Optional</small></label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="example@gmail.com"
-                   autocomplete="email" aria-describedby="error-email">
+                  autocomplete="email" aria-describedby="error-email">
             <span class="error-msg" id="error-email" aria-live="polite" hidden>
               Pakisulat ang tamang email. <small>Please enter a valid email address.</small>
             </span>
@@ -223,24 +223,10 @@
             <datalist id="barangay-list"></datalist>
             <input type="hidden" id="barangay" name="barangay">
             <span class="error-msg" id="error-barangay" aria-live="polite" hidden>
-              Pumili ng barangay sa Lungsod Quezon. <small>Please select a valid barangay in Quezon City.</small>
+              Pumili ng barangay sa Cainta Rizal. <small>Please select a valid barangay in Cainta Rizal.</small>
             </span>
           </div>
-
-          <div class="field-group">
-            <label for="city">Lungsod <small>City</small></label>
-            <input type="text" id="city" name="city" value="Quezon City" readonly
-                   autocomplete="address-level2">
-          </div>
         </div>
-
-        <div class="form-row two-column">
-          <div class="field-group">
-            <label for="province">Probinsya <small>Province</small></label>
-            <input type="text" id="province" name="province" value="Metro Manila" readonly>
-          </div>
-        </div>
-
       </fieldset>
 
   <!-- STEP 2: HEALTH & EMERGENCY CONTACT -->
@@ -306,7 +292,7 @@
       </span>
     </div>
 
-    <h3>Pangunahing Kontak sa Emerhensya <small>Primary Emergency Contact</small></h3>
+    <h3>Pangunahing Kontak kapag may Emergency <small>Primary Emergency Contact</small></h3>
 
     <div class="form-row two-column">
       <div class="field-group" id="group-primary-contact-name">
