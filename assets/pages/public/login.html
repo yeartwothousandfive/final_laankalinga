@@ -55,12 +55,17 @@
         <form id="login-form" action="#" method="POST" novalidate>
 
           <div class="field-group" id="group-email">
-            <label for="email">Email address <span aria-label="required">*</span></label>
-            <input type="email" id="email" name="email" required
-                   autocomplete="email"
-                   aria-describedby="error-email">
+            <label for="email">Email or Mobile Number <span aria-label="required">*</span></label>
+            <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="example@email.com or 09171234567"
+                  aria-describedby="error-email">
             <span class="error-msg" id="error-email" aria-live="polite" hidden>
-              Please enter a valid email address.
+              Please enter a valid email address or mobile number.
             </span>
           </div>
 

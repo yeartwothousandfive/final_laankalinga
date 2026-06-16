@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-
   <a href="#main-content" class="skip-link">Laktawan ang nilalaman / Skip to main content</a>
 
   <div class="banner-error" id="banner-offline" role="alert" aria-live="assertive" hidden>
@@ -39,6 +38,12 @@
 
   <main id="main-content">
 
+    <!-- empty state: family rep with no linked seniors yet -->
+    <div id="dashboard-empty" hidden>
+      <p>Wala ka pang nakaugnay na senior. <small>You have no linked seniors yet.</small></p>
+      <a href="fam-setup.html" class="btn-primary">Magdagdag ng Senior <small>Add a Senior</small></a>
+    </div>
+
     <!-- senior switcher: only shown for family reps with multiple linked seniors -->
     <section id="senior-switcher-section" hidden>
       <h2 id="switcher-heading">Iyong Nakaugnay na Senior <small>Your Linked Senior</small></h2>
@@ -55,7 +60,7 @@
       <h2 id="upcoming-heading">Susunod na Bisita <small>Next Scheduled Visit</small></h2>
 
       <div id="appointment-details" hidden>
-        <p><strong>Pangalan / Name:</strong> <span id="appt-senior-name">—</span></p>
+        <p><strong>Para kay / For:</strong> <span id="appt-senior-name">—</span></p>
         <p><strong>Petsa / Date:</strong> <span id="appt-date">—</span></p>
         <p><strong>Oras / Time:</strong> <span id="appt-time">—</span></p>
         <p><strong>Serbisyo / Service:</strong> <span id="appt-service">—</span></p>
@@ -71,7 +76,7 @@
 
       <div id="appointment-empty" hidden>
         <p>Walang naka-schedule na bisita sa ngayon. <small>No upcoming visits scheduled.</small></p>
-        <a href="book.html" class="btn-primary">Humiling ng Bisita <small>Request a Visit</small></a>
+        <a href="book.html" class="btn-primary" id="btn-book">Humiling ng Bisita <small>Request a Visit</small></a>
       </div>
     </section>
 
@@ -139,9 +144,12 @@
     <section id="quick-links" aria-labelledby="quick-links-heading">
       <h3 id="quick-links-heading">Mga Aksyon <small>Quick Actions</small></h3>
       <ul>
-        <li><a href="book.html">+ Humiling ng Bagong Bisita <small>Request a New Visit</small></a></li>
+        <li><a href="book.html" id="link-book">+ Humiling ng Bagong Bisita <small>Request a New Visit</small></a></li>
         <li><a href="profile.html">I-update ang Impormasyon <small>Update Profile</small></a></li>
         <li><a href="history.html">Tingnan ang Nakaraang Bisita <small>View Past Visits</small></a></li>
+        <li id="quick-add-senior" hidden>
+          <a href="fam-setup.html">+ Magdagdag ng Senior <small>Add Another Senior</small></a>
+        </li>
       </ul>
     </section>
 
@@ -159,8 +167,6 @@
   </footer>
 
   <script src="../../js/senior/dashboard.js"></script>
-
-</body>
 
 </body>
 </html>

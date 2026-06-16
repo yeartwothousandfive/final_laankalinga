@@ -13,8 +13,11 @@
     document.getElementById('banner-session').hidden = false;
   }
 
+    // pick role
 
-  // pick role
+  const contactInput = document.getElementById('email');
+  const contactLabel = document.querySelector('label[for="email"]');
+
   const roleBtns = document.querySelectorAll('.role-btn');
   const errorRole = document.getElementById('error-role');
   let selectedRole = null;
@@ -26,20 +29,37 @@
   };
 
   roleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      roleBtns.forEach(b => {
-        b.setAttribute('aria-pressed', 'false');
-        b.classList.remove('role-btn--active');
-      });
-      btn.setAttribute('aria-pressed', 'true');
-      btn.classList.add('role-btn--active');
-      selectedRole = btn.dataset.role;
-      errorRole.hidden = true;
-      document.getElementById('register-prompt').hidden = false;
+  btn.addEventListener('click', () => {
 
-      document.getElementById('register-link').href = registerRoutes[selectedRole];
+    roleBtns.forEach(b => {
+      b.setAttribute('aria-pressed', 'false');
+      b.classList.remove('role-btn--active');
     });
+
+    btn.setAttribute('aria-pressed', 'true');
+    btn.classList.add('role-btn--active');
+
+    selectedRole = btn.dataset.role;
+
+    if (selectedRole === 'senior') {
+      contactLabel.innerHTML =
+        'Mobile Number <span aria-label="required">*</span>';
+
+      contactInput.placeholder = '09171234567';
+
+    } else {
+      contactLabel.innerHTML =
+        'Email Address <span aria-label="required">*</span>';
+
+      contactInput.placeholder = 'example@email.com';
+    }
+
+    errorRole.hidden = true;
+    document.getElementById('register-prompt').hidden = false;
+    document.getElementById('register-link').href =
+      registerRoutes[selectedRole];
   });
+});
 
   const dashboardRoutes = {
     senior:    '../pages/senior/dashboard.html',
@@ -74,23 +94,26 @@
     document.getElementById(id).hidden = !show;
   }
 
-  function isValidEmail(val) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
 
-  // blur-time validation
-  const emailInput = document.getElementById('email');
+  function isValidPhone(value) {
+    return /^09\d{9}$/.test(value);
+  }
 
-  emailInput.addEventListener('blur', () => {
-    showError('error-email', !isValidEmail(emailInput.value));
-  });
+  const emailError = document.getElementById('error-email');
 
-  passwordInput.addEventListener('blur', () => {
-    showError('error-password', passwordInput.value.trim() === '');
-  });
+  if (selectedRole === 'senior') {
+    emailError.textContent =
+      'Please enter a valid mobile number.';
+  } else {
+    emailError.textContent =
+      'Please enter a valid email address.';
+  }
 
+  // blur-time validation / submit
 
-  // submit
   const form        = document.getElementById('login-form');
   const summaryBox  = document.getElementById('error-summary');
   const summaryList = document.getElementById('error-summary-list');
@@ -104,6 +127,18 @@
     showError('error-locked',      false);
 
     const errors = [];
+    const contactValue = contactInput.value.trim();
+
+    if (selectedRole === 'senior') {
+
+      if (!isValidPhone(contactValue)) {
+        showError('error-email', true);
+        errors.push({
+          id: 'email',
+          msg: 'Please enter a valid mobile number.'
+        });
+      }
+    }
 
     // role check
     if (!selectedRole) {
@@ -140,10 +175,11 @@
 
     summaryBox.hidden = true;
 
-    // simulate server response here
-    // replace with actual fetch/POST call.
-    // on success: redirect to dashboard
-    // on failure: show the right error below
+    /* simulate server response here
+       replace with actual fetch/POST call.
+       on success: redirect to dashboard
+       on failure: show the right error below 
+    */
 
     const simulatedResponse = 'success'; // 'success' | 'credentials' | 'not-found' | 'locked'
 

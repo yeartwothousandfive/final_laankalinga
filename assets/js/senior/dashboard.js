@@ -44,23 +44,20 @@
   });
 
 
-  // simulated data 
-  /* TODO: replace with actual fetch from GET /api/me
-   Expected response shape:
-   {
-     role: 'senior' | 'family',
-     name: string,
-     linkedSeniors: [          ← always an array; seniors have one entry (themselves)
-       {
-         id: string,
-         name: string,
-         appointment: { ... } | null
-       }
-     ]
-   } */
+  /*  simulated data 
+     TODO: replace with actual fetch from GET /api/me
+     Expected shape:
+     {
+       role: 'senior' | 'family',
+       name: string,
+       linkedSeniors: [
+         { id: string, name: string, appointment: { ... } | null }
+       ]
+     }
+  */
 
   const currentUser = {
-    role: 'family',             // change to 'senior' to simulate a senior login
+    role: 'family',
     name: 'Laura Florante',
     linkedSeniors: [
       {
@@ -84,26 +81,17 @@
     ],
   };
 
-   // simulated senior login — uncomment to test:
-  /* const currentUser = {
-    role: 'senior',
-    name: 'Jose Reyes',
-    linkedSeniors: [
-      {
-        id: 's003',
-        name: 'Jose Reyes',
-        appointment: {
-        date:           'Miyerkules, Hunyo 18, 2026',
-        isoDate:        '2026-06-18',
-        time:           '10:00 AM',
-        service:        'Pangkalahatang Pagsusuri / General Check-up',
-        location:       'Sa tahanan / Home Visit',
-        volunteer:      'Ana Reyes',
-        volunteerPhone: '09281234567',
-        },
-      },
-    ],
-  };*/
+  /* to simulate a senior login, replace currentUser with:
+     {
+       role: 'senior',
+       name: 'Jose Reyes',
+       linkedSeniors: [
+         { id: 's003', name: 'Jose Reyes', appointment: { ... } | null }
+       ]
+     }
+
+     to simulate a family rep with no seniors yet, set linkedSeniors: []
+  */
 
 
   // welcome message 
@@ -112,25 +100,41 @@
     `Maligayang Pagbabalik, ${currentUser.name}! <small>Welcome back!</small>`;
 
 
-  // senior switcher 
-  // shown only for family reps who have more than one linked senior
+  // role-based setup 
 
   const switcherSection = document.getElementById('senior-switcher-section');
   const switcher        = document.getElementById('senior-switcher');
+  const quickAddSenior  = document.getElementById('quick-add-senior');
 
-  if (currentUser.role === 'family' && currentUser.linkedSeniors.length > 1) {
-    currentUser.linkedSeniors.forEach((senior, idx) => {
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.textContent = senior.name;
-      switcher.appendChild(opt);
-    });
-    switcherSection.hidden = false;
+  // show "Add Another Senior" in quick links for family reps only
+  if (currentUser.role === 'family') {
+    quickAddSenior.hidden = false;
   }
 
-  switcher.addEventListener('change', () => {
-    renderSenior(currentUser.linkedSeniors[parseInt(switcher.value, 10)]);
-  });
+  // empty state: family rep with no linked seniors
+  if (!currentUser.linkedSeniors.length) {
+    document.getElementById('dashboard-empty').hidden      = false;
+    document.getElementById('upcoming-appointment').hidden = true;
+    document.getElementById('quick-links').hidden          = true;
+  } else {
+
+    // switcher: only for family reps with more than one senior
+    if (currentUser.role === 'family' && currentUser.linkedSeniors.length > 1) {
+      currentUser.linkedSeniors.forEach((senior, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = senior.name;
+        switcher.appendChild(opt);
+      });
+      switcherSection.hidden = false;
+    }
+
+    switcher.addEventListener('change', () => {
+      renderSenior(currentUser.linkedSeniors[parseInt(switcher.value, 10)]);
+    });
+
+    renderSenior(currentUser.linkedSeniors[0]);
+  }
 
 
   // helpers 
@@ -157,9 +161,9 @@
   }
 
 
-  // render senior
+  // render senior 
 
-  let activeSenior = currentUser.linkedSeniors[0];
+  let activeSenior = null;
 
   function renderSenior(senior) {
     activeSenior = senior;
@@ -189,9 +193,13 @@
       detailsEl.hidden = true;
       emptyEl.hidden   = false;
     }
-  }
 
-  renderSenior(activeSenior);
+    // pass active senior to booking page via sessionStorage
+    sessionStorage.setItem('bookingFor', JSON.stringify({
+      id:   senior.id,
+      name: senior.name,
+    }));
+  }
 
 
   // reschedule modal 
@@ -240,9 +248,8 @@
 
     rescheduleErrBox.hidden = true;
 
-    // TODO: PATCH /api/appointments/:id with { date: rescheduleDate.value, time: rescheduleTime.value }
+    // TODO: PATCH /api/appointments/:id { date, time }
 
-    // simulated success: update display
     if (activeSenior.appointment) {
       const newDate = new Date(rescheduleDate.value + 'T00:00:00');
       activeSenior.appointment.date    = newDate.toLocaleDateString('fil-PH', {
@@ -288,7 +295,7 @@
   });
 
 
-  // close modals on backdrop click / ESC 
+  // close modals on backdrop click / ESC
 
   [rescheduleModal, cancelModal].forEach(modal => {
     modal.addEventListener('click', e => {
