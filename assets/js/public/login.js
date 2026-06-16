@@ -22,6 +22,7 @@
   const errorRole = document.getElementById('error-role');
   let selectedRole = null;
 
+
   const registerRoutes = {
     senior:    'register-senior.html',
     family:    'register-family.html',
@@ -102,16 +103,6 @@
     return /^09\d{9}$/.test(value);
   }
 
-  const emailError = document.getElementById('error-email');
-
-  if (selectedRole === 'senior') {
-    emailError.textContent =
-      'Please enter a valid mobile number.';
-  } else {
-    emailError.textContent =
-      'Please enter a valid email address.';
-  }
-
   // blur-time validation / submit
 
   const form        = document.getElementById('login-form');
@@ -129,6 +120,13 @@
     const errors = [];
     const contactValue = contactInput.value.trim();
 
+    
+    // role check
+    if (!selectedRole) {
+      errorRole.hidden = false;
+      errors.push({ id: null, msg: 'Please select who you are.' });
+    }
+
     if (selectedRole === 'senior') {
 
       if (!isValidPhone(contactValue)) {
@@ -140,14 +138,20 @@
       }
     }
 
-    // role check
-    if (!selectedRole) {
-      errorRole.hidden = false;
-      errors.push({ id: null, msg: 'Please select who you are.' });
+    const emailError = document.getElementById('error-email');
+
+    if (selectedRole === 'senior') {
+      emailError.textContent =
+        'Please enter a valid mobile number.';
+    } else {
+      emailError.textContent =
+        'Please enter a valid email address.';
     }
 
+    
+
     // email check
-    if (!isValidEmail(emailInput.value)) {
+    if (!isValidEmail(contactInput.value)) {
       showError('error-email', true);
       errors.push({ id: 'email', msg: 'Please enter a valid email address.' });
     }

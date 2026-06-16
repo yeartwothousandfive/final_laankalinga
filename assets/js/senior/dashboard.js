@@ -13,25 +13,34 @@
   }
 
 
-  // zoom controls 
+  // zoom controls
+  const root = document.documentElement;
+  const ZOOM_STEP = 0.1;
+  const ZOOM_MIN  = 0.8;
+  const ZOOM_MAX  = 1.6;
+  const ZOOM_KEY  = 'laankalinga-zoom';
 
-  let zoomLevel = parseInt(localStorage.getItem('zoomLevel') || '100', 10);
+  function applyZoom(level) {
+    root.style.fontSize = `${level * 100}%`;
+    localStorage.setItem(ZOOM_KEY, level);
+}
 
-  function applyZoom() {
-    document.documentElement.style.fontSize = zoomLevel + '%';
-    localStorage.setItem('zoomLevel', zoomLevel);
-  }
-
-  applyZoom();
+  let currentZoom = parseFloat(localStorage.getItem(ZOOM_KEY)) || 1;
+  applyZoom(currentZoom);
 
   document.getElementById('zoom-in').addEventListener('click', () => {
-    if (zoomLevel < 150) { zoomLevel += 10; applyZoom(); }
+    currentZoom = Math.min(ZOOM_MAX, currentZoom + ZOOM_STEP);
+    applyZoom(currentZoom);
   });
+
   document.getElementById('zoom-out').addEventListener('click', () => {
-    if (zoomLevel > 80) { zoomLevel -= 10; applyZoom(); }
+    currentZoom = Math.max(ZOOM_MIN, currentZoom - ZOOM_STEP);
+    applyZoom(currentZoom);
   });
+
   document.getElementById('zoom-reset').addEventListener('click', () => {
-    zoomLevel = 100; applyZoom();
+    currentZoom = 1;
+    applyZoom(currentZoom);
   });
 
 
@@ -139,9 +148,9 @@
 
   // helpers 
 
-  function showError(id, show) {
-    const el = document.getElementById(id);
-    if (el) el.hidden = !show;
+  function toggleError(id, visible) {
+  const el = document.getElementById(id);
+  if (el) el.hidden = !visible;
   }
 
   function isWeekday(dateStr) {
@@ -213,8 +222,8 @@
   document.getElementById('btn-reschedule').addEventListener('click', () => {
     rescheduleDate.value    = '';
     rescheduleTime.value    = '';
-    showError('error-reschedule-date', false);
-    showError('error-reschedule-time', false);
+    toggleError('error-reschedule-date', false);
+    toggleError('error-reschedule-time', false);
     rescheduleErrBox.hidden = true;
     openModal(rescheduleModal);
   });
@@ -227,17 +236,17 @@
     const errors = [];
 
     if (!rescheduleDate.value || !isWeekday(rescheduleDate.value)) {
-      showError('error-reschedule-date', true);
+      toggleError('error-reschedule-date', true);
       errors.push('Pumili ng valid na araw (Lunes–Biyernes). / Please pick a valid weekday.');
     } else {
-      showError('error-reschedule-date', false);
+      toggleError('error-reschedule-date', false);
     }
 
     if (!rescheduleTime.value) {
-      showError('error-reschedule-time', true);
+      toggleError('error-reschedule-time', true);
       errors.push('Pumili ng oras. / Please choose a time.');
     } else {
-      showError('error-reschedule-time', false);
+      toggleError('error-reschedule-time', false);
     }
 
     if (errors.length > 0) {
