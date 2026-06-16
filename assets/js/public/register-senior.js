@@ -295,7 +295,6 @@
     submitBtn.textContent = 'Nagsusumite… / Submitting…';
 
     // TODO: POST /api/register/senior
-    form.hidden = false;
     document.getElementById('register-senior-form').hidden = true;
     document.getElementById('register-success').hidden = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });

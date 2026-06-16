@@ -64,7 +64,6 @@
 
   const dashboardRoutes = {
     senior:    '../pages/senior/dashboard.html',
-    family:    '../pages/senior/fam-dashboard.html',
     volunteer: '../pages/volunteer/dashboard.html'
   };
 
@@ -188,7 +187,7 @@
     const simulatedResponse = 'success'; // 'success' | 'credentials' | 'not-found' | 'locked'
 
     if (simulatedResponse === 'success') {
-      window.location.href = `dashboard-${selectedRole}.html`;
+      window.location.href = dashboardRoutes;
     } else if (simulatedResponse === 'credentials') {
       showError('error-credentials', true);
     } else if (simulatedResponse === 'not-found') {

@@ -15,7 +15,7 @@
 
 // set correct dashboard links based on logged-in role
 const userRole = sessionStorage.getItem('userRole'); // 'senior' or 'family'
-const dashboardPath = userRole === 'family' ? '../senior/fam-dashboard.html' : '../senior/dashboard.html';
+const dashboardPath = '../senior/dashboard.html';
 
 const navDashboardLink = document.getElementById('nav-dashboard-link');
 if (navDashboardLink) navDashboardLink.href = dashboardPath;
