@@ -11,7 +11,41 @@
   // barangay datalist 
 
   const barangays = [
-    'San Andres', 'San Isidro', 'San Juan', 'San Roque', 'Sta. Rosa', 'Sto. Domingo', 'Sto. Niño'
+    'Alicia', 'Amihan', 'Apolonio Samson', 'Aurora', 'Baesa', 'Bagbag',
+    'Bagong Buhay', 'Bagong Pag-Asa', 'Bagong Silangan', 'Bagong Silang',
+    'Bagumbayan', 'Bagumbuhay', 'Bahay Toro', 'Balingasa', 'Balintawak',
+    'Batasan Hills', 'Bayanihan', 'Blue Ridge A', 'Blue Ridge B',
+    'Botocan', 'Bungad', 'Camp Aguinaldo', 'Capri', 'Central',
+    'Claro', 'Commonwealth', 'Culiat', 'Damar', 'Damayan',
+    'Damayan Lagi', 'Dangwa', 'Del Monte', 'Dioquino Zobel',
+    'Don Manuel', 'Doña Aurora', 'Doña Imelda', 'Doña Josefa',
+    'Duyan-Duyan', 'E. Rodriguez', 'East Kamias', 'Escopa I',
+    'Escopa II', 'Escopa III', 'Escopa IV', 'Fairview', 'Greater Lagro',
+    'Gulod', 'Holy Spirit', 'Horseshoe', 'Immaculate Concepcion',
+    'Kaligayahan', 'Kalusugan', 'Kamuning', 'Katipunan', 'Kaunlaran',
+    'Kristong Hari', 'Krus na Ligas', 'Laging Handa', 'Libis',
+    'Lourdes', 'Loyola Heights', 'Lucban', 'Luzviminda',
+    'Maharlika', 'Malaya', 'Mangga', 'Manresa', 'Mariana',
+    'Mariblo', 'Marilag', 'Masagana', 'Masambong', 'Matandang Balara',
+    'Milagrosa', 'Model', 'Nagkaisang Nayon', 'Nayong Kanluran',
+    'New Era', 'North Fairview', 'Novaliches Proper', 'Obrero',
+    'Old Capitol Site', 'Paang Bundok', 'Pag-Ibig sa Nayon',
+    'Paligsahan', 'Paltok', 'Pansol', 'Paraiso', 'Pasong Putik Proper',
+    'Pasong Tamo', 'Payatas', 'Phil-Am', 'Pinagkaisahan', 'Pinyahan',
+    'Pitogo', 'Plaridel', 'Poblacion', 'Project 6', 'Pugad Lawin',
+    'Quezon City Proper', 'Quirino 2-A', 'Quirino 2-B', 'Quirino 2-C',
+    'Quirino 3-A', 'Ramon Magsaysay', 'Roxas', 'Sacred Heart',
+    'Saint Ignatius', 'Saint Peter', 'Salvacion', 'San Agustin',
+    'San Antonio', 'San Bartolome', 'San Isidro', 'San Isidro Labrador',
+    'San Jose', 'San Martin de Porres', 'San Roque', 'San Vicente',
+    'Sangandaan', 'Santa Cruz', 'Santa Lucia', 'Santa Monica',
+    'Santa Teresita', 'Santo Cristo', 'Santo Niño', 'Santol',
+    'Sauyo', 'Siena', 'Sikatuna Village', 'Silangan', 'Socorro',
+    'South Triangle', 'Tagumpay', 'Talayan', 'Talipapa',
+    'Tandang Sora', 'Tatalon', 'Teacher\'s Village East',
+    'Teacher\'s Village West', 'Ugong Norte', 'Unang Sigaw',
+    'UP Campus', 'UP Village', 'Vasra', 'Veterans Village',
+    'Villa Maria Clara', 'West Kamias', 'West Triangle', 'White Plains'
   ];
 
   const barangaySearch = document.getElementById('barangay-search');
@@ -96,7 +130,6 @@
     ['last-name',            'error-last-name'],
     ['house-number',         'error-house-number'],
     ['street',               'error-street'],
-    ['primary-contact-name', 'error-primary-contact-name'],
   ];
 
   simpleBlurFields.forEach(([fieldId, errorId]) => {
@@ -109,7 +142,6 @@
   const selectBlurFields = [
     ['gender',                       'error-gender'],
     ['civil-status',                 'error-civil-status'],
-    ['primary-contact-relationship', 'error-primary-contact-relationship'],
     ['rep-relationship',             'error-rep-relationship'],
     ['comm-preference',              'error-comm-preference'],
   ];
@@ -195,8 +227,6 @@
     }
 
     // emergency contact
-    check('primary-contact-name',         'error-primary-contact-name',         document.getElementById('primary-contact-name').value.trim() !== '',  'Pangalan ng Kontak / Emergency contact name');
-    check('primary-contact-relationship', 'error-primary-contact-relationship', document.getElementById('primary-contact-relationship').value !== '',   'Relasyon ng Kontak / Contact relationship');
     if (!validatePhone('primary-contact-phone', 'error-primary-contact-phone'))  errors.push({ fieldId: 'primary-contact-phone', label: 'Numero ng Kontak / Contact number' });
 
     // pwd upload
@@ -228,7 +258,7 @@
 
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled    = true;
-    submitBtn.textContent = 'Nagsusumite… / Saving…';
+    submitBtn.textContent = 'Saving…';
 
     // mark setup as complete
     localStorage.setItem('fam_setup_complete', 'true');

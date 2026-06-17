@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Dashboard - LaanKalinga</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/senior/dashboard.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Laktawan ang nilalaman / Skip to main content</a>
@@ -23,8 +24,14 @@
     <button type="button" id="zoom-out"   aria-label="Paliitin ang teksto / Decrease text size">−</button>
   </div>
 
-  <header>
-    <h1 id="welcome-message">Maligayang Pagbabalik!</h1>
+  <div class="dashboard-wrap">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="sidebar__brand">
+      <a href="index.html" class="logo-link">
+        <img src="../../images/logo.png" alt="LaanKalinga" class="logo">
+      </a>
+    </div>
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
@@ -34,7 +41,19 @@
         <li><a href="#" id="logout-link">Logout</a></li>
       </ul>
     </nav>
-  </header>
+  </aside>
+
+  <div class="dashboard-body">
+
+    <header class="topbar">
+      <div class="topbar__user">
+        <span class="topbar__name" id="topbar-name">—</span>
+        <span class="topbar__role" id="topbar-role">—</span>
+      </div>
+      <div class="topbar__avatar" aria-hidden="true">
+        <span id="topbar-initials">—</span>
+      </div>
+    </header>
 
   <main id="main-content">
 
@@ -69,14 +88,14 @@
           <a id="appt-volunteer-phone" href="#">—</a></p>
 
         <div class="form-actions">
-          <button type="button" id="btn-reschedule">Ibahin ang Iskedyul <small>Reschedule</small></button>
-          <button type="button" id="btn-cancel">Kanselahin <small>Cancel Visit</small></button>
+          <button type="button" id="btn-reschedule">Ibahin ang Iskedyul</button>
+          <button type="button" id="btn-cancel">Kanselahin</button>
         </div>
       </div>
 
       <div id="appointment-empty" hidden>
         <p>Walang naka-schedule na bisita sa ngayon. <small>No upcoming visits scheduled.</small></p>
-        <a href="book.html" class="btn-primary" id="btn-book">Humiling ng Bisita <small>Request a Visit</small></a>
+        <a href="book.html" class="btn-primary" id="btn-book">Humiling ng Serbisyo</a>
       </div>
     </section>
 
@@ -161,7 +180,7 @@
     </section>
 
   </main>
-
+  </div>
   <footer>
     <p>&copy; 2026 LaanKalinga. <small>All rights reserved.</small></p>
   </footer>

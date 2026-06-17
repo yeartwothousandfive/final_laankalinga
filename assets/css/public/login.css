@@ -70,7 +70,10 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
+}
+
+#role-heading {
+  margin-bottom: 1rem;
 }
 
 .role-grid {
@@ -152,6 +155,7 @@
   color: var(--color-text-primary);
   background: var(--color-surface-white);
   transition: border-color var(--transition-fast);
+  margin-bottom: 1rem;
 }
 
 .field-group input:focus {
@@ -175,7 +179,7 @@
 .toggle-pw {
   position: absolute;
   right: var(--space-3);
-  top: 50%;
+  top: 35%;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -186,8 +190,8 @@
 }
 
 .toggle-pw img {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   opacity: 0.5;
 }
 
@@ -261,6 +265,11 @@
   font-size: var(--font-size-sm);
   color: var(--color-error);
   display: block;
+  margin-top: -1rem;
+}
+
+#error-role {
+  margin-top: 1rem;
 }
 
 .error-summary {
@@ -314,17 +323,16 @@
 }
 
 /* footer */
-
-.login-footer {
-  padding: var(--space-5) var(--container-padding-x);
+.form-footer {
   text-align: center;
-  background: var(--color-surface-cream);
+  padding: var(--space-6) var(--container-padding-x);
   border-top: 1px solid var(--color-border-light);
 }
 
-.login-footer p {
+.form-footer p {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
+  margin: 0 auto;
 }
 
 @media (max-width: 480px) {

@@ -1,7 +1,6 @@
 (function () {
 
   // offline / session banners 
-
   const bannerOffline = document.getElementById('banner-offline');
   window.addEventListener('offline', () => { bannerOffline.hidden = false; });
   window.addEventListener('online',  () => { bannerOffline.hidden = true;  });
@@ -14,9 +13,42 @@
 
 
   // barangay datalist 
-
   const barangays = [
-    'San Andres', 'San Isidro', 'San Juan', 'San Roque', 'Sta. Rosa', 'Sto. Domingo', 'Sto. Niño'
+    'Alicia', 'Amihan', 'Apolonio Samson', 'Aurora', 'Baesa', 'Bagbag',
+    'Bagong Buhay', 'Bagong Pag-Asa', 'Bagong Silangan', 'Bagong Silang',
+    'Bagumbayan', 'Bagumbuhay', 'Bahay Toro', 'Balingasa', 'Balintawak',
+    'Batasan Hills', 'Bayanihan', 'Blue Ridge A', 'Blue Ridge B',
+    'Botocan', 'Bungad', 'Camp Aguinaldo', 'Capri', 'Central',
+    'Claro', 'Commonwealth', 'Culiat', 'Damar', 'Damayan',
+    'Damayan Lagi', 'Dangwa', 'Del Monte', 'Dioquino Zobel',
+    'Don Manuel', 'Doña Aurora', 'Doña Imelda', 'Doña Josefa',
+    'Duyan-Duyan', 'E. Rodriguez', 'East Kamias', 'Escopa I',
+    'Escopa II', 'Escopa III', 'Escopa IV', 'Fairview', 'Greater Lagro',
+    'Gulod', 'Holy Spirit', 'Horseshoe', 'Immaculate Concepcion',
+    'Kaligayahan', 'Kalusugan', 'Kamuning', 'Katipunan', 'Kaunlaran',
+    'Kristong Hari', 'Krus na Ligas', 'Laging Handa', 'Libis',
+    'Lourdes', 'Loyola Heights', 'Lucban', 'Luzviminda',
+    'Maharlika', 'Malaya', 'Mangga', 'Manresa', 'Mariana',
+    'Mariblo', 'Marilag', 'Masagana', 'Masambong', 'Matandang Balara',
+    'Milagrosa', 'Model', 'Nagkaisang Nayon', 'Nayong Kanluran',
+    'New Era', 'North Fairview', 'Novaliches Proper', 'Obrero',
+    'Old Capitol Site', 'Paang Bundok', 'Pag-Ibig sa Nayon',
+    'Paligsahan', 'Paltok', 'Pansol', 'Paraiso', 'Pasong Putik Proper',
+    'Pasong Tamo', 'Payatas', 'Phil-Am', 'Pinagkaisahan', 'Pinyahan',
+    'Pitogo', 'Plaridel', 'Poblacion', 'Project 6', 'Pugad Lawin',
+    'Quezon City Proper', 'Quirino 2-A', 'Quirino 2-B', 'Quirino 2-C',
+    'Quirino 3-A', 'Ramon Magsaysay', 'Roxas', 'Sacred Heart',
+    'Saint Ignatius', 'Saint Peter', 'Salvacion', 'San Agustin',
+    'San Antonio', 'San Bartolome', 'San Isidro', 'San Isidro Labrador',
+    'San Jose', 'San Martin de Porres', 'San Roque', 'San Vicente',
+    'Sangandaan', 'Santa Cruz', 'Santa Lucia', 'Santa Monica',
+    'Santa Teresita', 'Santo Cristo', 'Santo Niño', 'Santol',
+    'Sauyo', 'Siena', 'Sikatuna Village', 'Silangan', 'Socorro',
+    'South Triangle', 'Tagumpay', 'Talayan', 'Talipapa',
+    'Tandang Sora', 'Tatalon', 'Teacher\'s Village East',
+    'Teacher\'s Village West', 'Ugong Norte', 'Unang Sigaw',
+    'UP Campus', 'UP Village', 'Vasra', 'Veterans Village',
+    'Villa Maria Clara', 'West Kamias', 'West Triangle', 'White Plains'
   ];
 
   const barangaySearch = document.getElementById('barangay-search');
@@ -109,6 +141,7 @@
   const form        = document.getElementById('register-family-form');
   const summaryBox  = document.getElementById('error-summary');
   const summaryList = document.getElementById('error-summary-list');
+  
 
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -157,6 +190,8 @@
     // TODO: replace with actual fetch POST /api/register
     document.getElementById('register-family-form').hidden = true;
     document.getElementById('register-success').hidden = false;
+    document.getElementById('register-success').style.display = 'block';
+    document.getElementById('register-family-form').style.display = 'none';
   });
 
 })();

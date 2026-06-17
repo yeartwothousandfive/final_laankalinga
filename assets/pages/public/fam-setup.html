@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Dashboard - LaanKalinga</title>
     <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/public/fam-setup.css">
 </head>
 <body>
   <div class="banner-error" id="banner-offline" role="alert" aria-live="assertive" hidden>
@@ -30,7 +31,7 @@
 
       <!-- STEP 1: SENIOR PERSONAL INFORMATION -->
       <fieldset class="form-step">
-        <legend>Hakbang 1 ng 3: Personal na Impormasyon ng Senior <small>Step 1 of 3: Senior's Personal Information</small></legend>
+        <legend>Hakbang 1 ng 3: Personal na Impormasyon ng Senior <br><small>Step 1 of 3: Senior's Personal Information</small></legend>
 
         <div class="field-group">
           <label for="profile-pic">Larawan <small>Profile picture — Optional</small></label>
@@ -186,7 +187,7 @@
 
       <!-- STEP 2: HEALTH, EMERGENCY CONTACT & RELATIONSHIP -->
       <fieldset class="form-step">
-        <legend>Hakbang 2 ng 3: Kalusugan, Kontak, at Relasyon <small>Step 2 of 3: Health, Emergency Contact and Relationship</small></legend>
+        <legend>Hakbang 2 ng 3: Kalusugan, Kontak, at Relasyon <br><small>Step 2 of 3: Health, Emergency Contact and Relationship</small></legend>
 
         <div class="field-group">
           <label for="chronic-conditions">Mga Sakit <small>Chronic conditions — Optional</small></label>
@@ -245,37 +246,6 @@
             Pakiupload ang PWD ID. <small>Please upload the PWD ID.</small>
           </span>
         </div>
-
-        <h3>Pangunahing Kontak kapag may Emergency <small>Primary Emergency Contact</small></h3>
-
-        <div class="form-row two-column">
-          <div class="field-group">
-            <label for="primary-contact-name">Buong Pangalan <small>Full name</small> <span aria-label="required">*</span></label>
-            <input type="text" id="primary-contact-name" name="primary_contact_name" required
-              aria-describedby="error-primary-contact-name">
-            <span class="error-msg" id="error-primary-contact-name" aria-live="polite" hidden>
-              Pakisulat ang buong pangalan. <small>Please enter the full name.</small>
-            </span>
-          </div>
-
-          <div class="field-group">
-            <label for="primary-contact-relationship">Relasyon <small>Relationship</small> <span aria-label="required">*</span></label>
-            <select id="primary-contact-relationship" name="primary_contact_relationship" required
-              aria-describedby="error-primary-contact-relationship">
-              <option value="">— Pumili / Select —</option>
-              <option value="child">Anak / Child</option>
-              <option value="spouse">Asawa / Spouse</option>
-              <option value="sibling">Kapatid / Sibling</option>
-              <option value="grandchild">Apo / Grandchild</option>
-              <option value="nephew-niece">Pamangkin / Nephew or Niece</option>
-              <option value="relative">Kamag-anak / Relative</option>
-              <option value="friend">Kaibigan / Friend</option>
-              <option value="other">Iba pa / Other</option>
-            </select>
-            <span class="error-msg" id="error-primary-contact-relationship" aria-live="polite" hidden>
-              Pumili ng relasyon. <small>Please select the relationship.</small>
-            </span>
-          </div>
         </div>
 
         <div class="form-row two-column">
@@ -294,7 +264,7 @@
           </div>
         </div>
 
-        <h3>Relasyon mo sa Senior <small>Your Relationship to the Senior</small></h3>
+        <h3>Kaugnayan mo sa Senior <small>Your Relationship to the Senior</small></h3>
 
         <div class="form-row two-column">
           <div class="field-group">
@@ -334,7 +304,7 @@
 
       <!-- STEP 3: CONSENT -->
       <fieldset class="form-step">
-        <legend>Hakbang 3 ng 3: Pahintulot <small>Step 3 of 3: Consent</small></legend>
+        <legend>Hakbang 3 ng 3: Pahintulot <br><small>Step 3 of 3: Consent</small></legend>
 
         <div class="field-group">
           <label class="checkbox-label">

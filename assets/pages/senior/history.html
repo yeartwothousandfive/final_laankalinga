@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment History - LaanKalinga</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/senior/history.css">
 </head>
 <body>
 
@@ -25,18 +26,36 @@
     <button type="button" id="zoom-out" aria-label="Paliitin ang teksto / Decrease text size">−</button>
   </div>
 
-  <header>
-    <h1>Visit History</h1>
+  <div class="dashboard-wrap">
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="sidebar__brand">
+      <a href="index.html" class="logo-link">
+        <img src="../../images/logo.png" alt="LaanKalinga" class="logo">
+      </a>
+    </div>
     <nav aria-label="Main navigation">
       <ul>
-        <li><a href="dashboard.html" id="nav-dashboard-link">Dashboard</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="book.html">Book</a></li>
         <li><a href="history.html" aria-current="page">History</a></li>
         <li><a href="#" id="logout-link">Logout</a></li>
       </ul>
     </nav>
-  </header>
+  </aside>
+
+  <div class="dashboard-body">
+
+    <header class="topbar">
+      <div class="topbar__user">
+        <span class="topbar__name" id="topbar-name">—</span>
+        <span class="topbar__role" id="topbar-role">—</span>
+      </div>
+      <div class="topbar__avatar" aria-hidden="true">
+        <span id="topbar-initials">—</span>
+      </div>
+    </header>
 
   <main id="main-content">
 
@@ -62,7 +81,7 @@
       <!-- empty state: no history at all -->
       <div id="history-empty" hidden>
         <p>Walang pang naitatalang bisita. <small>You have no recorded visits yet.</small></p>
-        <a href="book.html" class="btn-primary">Mag-request ng serbisyo<small>Request a service</small></a>
+        <a href="book.html" class="btn-primary">Mag-request ng serbisyo</a>
       </div>
 
       <!-- empty state: no results for filter -->
@@ -87,6 +106,7 @@
         <button type="button" id="btn-notes-close" class="btn-secondary">Isara <small>Close</small></button>
       </div>
     </div>
+  </div>
   </div>
 
   <footer>

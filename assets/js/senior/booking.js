@@ -13,6 +13,61 @@
     ['reason',             'error-reason',             'Reason for visit'],
 ];
 
+/* stepper navigation */
+
+const STEPS = [1, 2, 3, 4];
+let currentStep = 1;
+
+function goToStep(n) {
+  // hide all steps
+  STEPS.forEach(s => {
+    const fieldset = document.querySelector(`.form-step[data-step="${s}"]`);
+    if (fieldset) fieldset.hidden = s !== n;
+  });
+
+  // update stepper dots
+  STEPS.forEach(s => {
+    const dot = document.querySelector(`.stepper__step[data-step="${s}"]`);
+    if (!dot) return;
+    dot.classList.remove('is-active', 'is-complete');
+    dot.removeAttribute('aria-current');
+    if (s === n) {
+      dot.classList.add('is-active');
+      dot.setAttribute('aria-current', 'step');
+    } else if (s < n) {
+      dot.classList.add('is-complete');
+    }
+  });
+
+  currentStep = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// wire up continue buttons
+document.querySelectorAll('.btn-continue').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const next = parseInt(btn.dataset.next, 10);
+    // run per-step validation here before advancing
+    if (validateStep(currentStep)) goToStep(next);
+  });
+});
+
+// wire up back buttons
+document.querySelectorAll('.btn-back').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prev = parseInt(btn.dataset.prev, 10);
+    goToStep(prev);
+  });
+});
+
+/* Per-step validation (stub — extend with your existing logic) */
+
+function validateStep(step) {
+  // return false and show errors to block navigation
+  // plug in your existing field validation per step here
+  return true;
+}
+
 // set correct dashboard links based on logged-in role
 const userRole = sessionStorage.getItem('userRole'); // 'senior' or 'family'
 const dashboardPath = '../senior/dashboard.html';
