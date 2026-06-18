@@ -204,18 +204,55 @@ main#main-content {
 }
 
 /* accounts table */
+/* ----------------------------------------------------------
+   ACCOUNT LIST SECTION
+   ---------------------------------------------------------- */
+
+#account-list {
+  background: var(--color-surface-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;          /* scroll horizontally instead of clipping */
+}
+
+#account-list > h2 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--color-border-light);
+  background: var(--color-surface-cream);
+  margin: 0;
+}
+
+/* ----------------------------------------------------------
+   ACCOUNTS TABLE
+   ---------------------------------------------------------- */
 
 #accounts-table {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--font-size-sm);
+  table-layout: fixed;       /* key: columns respect the widths you set */
 }
+
+#accounts-table th:nth-child(1) { width: 60px; }   /* ID */
+#accounts-table th:nth-child(2) { width: 140px; }  /* Name */
+#accounts-table th:nth-child(3) { width: 200px; }  /* Email */
+#accounts-table th:nth-child(4) { width: 130px; }  /* Mobile */
+#accounts-table th:nth-child(5) { width: 120px; }  /* Role */
+#accounts-table th:nth-child(6) { width: 130px; }  /* Status */
+#accounts-table th:nth-child(7) { width: 170px; }  /* Date Registered */
+
 #accounts-table[hidden] { display: none; }
 
 #accounts-table thead tr { background: var(--color-brand-600); }
 
 #accounts-table thead th {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   color: var(--color-text-inverse);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -235,30 +272,54 @@ main#main-content {
 #accounts-table tbody tr:nth-child(even):hover { background: var(--color-border-light); }
 
 #accounts-table td {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   color: var(--color-text-primary);
   vertical-align: middle;
+  white-space: nowrap;
 }
 
+/* ID */
 #accounts-table td:first-child {
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand-500);
   font-size: var(--font-size-xs);
   letter-spacing: var(--letter-spacing-wide);
-  white-space: nowrap;
 }
 
+/* Name */
 #accounts-table td:nth-child(2) {
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
 }
 
+/* Email, Mobile */
 #accounts-table td:nth-child(3),
 #accounts-table td:nth-child(4) {
   color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
 }
 
+/* Date Registered */
+#accounts-table td:nth-child(7) {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+/* ----------------------------------------------------------
+   ACTION CELL
+   ---------------------------------------------------------- */
+
+#accounts-table td:last-child {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.actions-cell {
+  display: flex;
+  flex-direction: row;       /* force horizontal, always */
+  flex-wrap: nowrap;         /* never stack */
+  align-items: center;
+  gap: var(--space-1);
+}
 /* action cell buttons */
 
 .actions-cell {

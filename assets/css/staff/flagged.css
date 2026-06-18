@@ -252,7 +252,8 @@ td .time { font-size: var(--font-size-xs); color: var(--color-text-muted); }
    ============================================================ */
 
 .btn-primary,
-.btn-secondary {
+.btn-secondary,
+.btn-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;

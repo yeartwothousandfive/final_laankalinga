@@ -387,6 +387,7 @@ main section > p {
   text-decoration: none;
   white-space: nowrap;
   transition: background var(--transition-fast), transform var(--transition-fast);
+  margin: 2px;
 }
 
 .btn-primary {

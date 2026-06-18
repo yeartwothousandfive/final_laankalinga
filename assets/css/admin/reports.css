@@ -706,3 +706,138 @@ footer {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-card__value { font-size: var(--font-size-xl); }
 }
+
+/* Missing panel wrappers */
+#volunteer-performance,
+#barangay-breakdown,
+#flagged-summary,
+#community-events {
+  background: var(--color-surface-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+#volunteer-performance > h2,
+#barangay-breakdown > h2,
+#flagged-summary > h2,
+#community-events > h2 {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 0;
+}
+
+/* Missing table selectors */
+#volunteers-table,
+#barangay-table,
+#flagged-table,
+#events-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+#volunteers-table[hidden],
+#barangay-table[hidden],
+#flagged-table[hidden],
+#events-table[hidden] { display: none; }
+
+#volunteers-table thead tr,
+#barangay-table thead tr,
+#flagged-table thead tr,
+#events-table thead tr { background: var(--color-brand-600); }
+
+#volunteers-table thead th,
+#barangay-table thead th,
+#flagged-table thead th,
+#events-table thead th {
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+  text-align: left;
+  white-space: nowrap;
+}
+
+#volunteers-table tbody tr,
+#barangay-table tbody tr,
+#flagged-table tbody tr,
+#events-table tbody tr {
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background var(--transition-fast);
+}
+
+#volunteers-table tbody tr:last-child,
+#barangay-table tbody tr:last-child,
+#flagged-table tbody tr:last-child,
+#events-table tbody tr:last-child { border-bottom: none; }
+
+#volunteers-table tbody tr:hover,
+#barangay-table tbody tr:hover,
+#flagged-table tbody tr:hover,
+#events-table tbody tr:hover { background: var(--color-surface-cream); }
+
+#volunteers-table tbody tr:nth-child(even),
+#barangay-table tbody tr:nth-child(even),
+#flagged-table tbody tr:nth-child(even),
+#events-table tbody tr:nth-child(even) { background: var(--color-surface-sand); }
+
+#volunteers-table tbody tr:nth-child(even):hover,
+#barangay-table tbody tr:nth-child(even):hover,
+#flagged-table tbody tr:nth-child(even):hover,
+#events-table tbody tr:nth-child(even):hover { background: var(--color-border-light); }
+
+#volunteers-table td,
+#barangay-table td,
+#flagged-table td,
+#events-table td {
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+/* Numeric columns — right-align for readability */
+#volunteers-table td:nth-child(2),
+#volunteers-table td:nth-child(3),
+#volunteers-table td:nth-child(4),
+#volunteers-table td:nth-child(5),
+#barangay-table td:nth-child(2),
+#barangay-table td:nth-child(3),
+#barangay-table td:nth-child(4),
+#barangay-table td:nth-child(5) {
+  text-align: right;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+#volunteers-table th:nth-child(2),
+#volunteers-table th:nth-child(3),
+#volunteers-table th:nth-child(4),
+#volunteers-table th:nth-child(5),
+#barangay-table th:nth-child(2),
+#barangay-table th:nth-child(3),
+#barangay-table th:nth-child(4),
+#barangay-table th:nth-child(5) {
+  text-align: right;
+}
+
+/* Actions cell for flagged/events tables */
+#flagged-table td:last-child,
+#events-table td:last-child {
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #volunteer-performance,
+  #barangay-breakdown,
+  #flagged-summary,
+  #community-events { overflow-x: auto; }
+}
