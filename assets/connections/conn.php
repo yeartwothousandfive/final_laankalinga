@@ -10,7 +10,8 @@ try{
         $env['dbName']
     );
 }
-catch(mysqli_sql_exception){
-    echo"Connection denied";
+catch(mysqli_sql_exception $e){
+    // Stop execution completely if database connection fails
+    die("Connection denied");
 }
 ?>
