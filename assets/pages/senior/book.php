@@ -8,13 +8,11 @@
 </head>
 <body>
 
-  <!-- PAGE LEVEL ERROR STATE ONLY (hindi ito main) -->
   <div class="page-error" role="alert" aria-live="assertive" hidden>
     <div class="page-error__icon" aria-hidden="true">!</div>
     <h1 class="page-error__title">We could not save your booking.</h1>
     <p class="page-error__reason" id="page-error-reason">
-      <!-- Filled in by JS, e.g. "The time slot you chose is no longer available." -->
-    </p>
+      </p>
     <ul class="page-error__actions">
       <li><a href="book.html" class="page-error__btn-primary">Try Again</a></li>
       <li><a href="dashboard.html" class="page-error__btn-secondary">Go to Dashboard</a></li>
@@ -24,7 +22,6 @@
     </p>
   </div>
 
-  <!-- START OF NORMAL PAGE -->
   <div class="page-wrap">
 
     <header>
@@ -51,12 +48,10 @@
 
     <main id="main-content">
 
-      <!-- Form-level error summary (shown on failed submit) -->
       <div class="error-summary" id="error-summary" role="alert" aria-live="assertive" hidden>
         <p class="error-summary__heading">Please fix these before continuing:</p>
         <ul class="error-summary__list" id="error-summary-list">
-          <!-- JS injects <li><a href="#field-id">Error description</a></li> items here -->
-        </ul>
+          </ul>
       </div>
 
       <section id="booking-form">
@@ -65,7 +60,6 @@
 
         <form id="form-booking" action="../../php/processbooking.php" method="POST" novalidate>
 
-          <!-- ── STEP 1: SERVICE ─────────────────────── -->
           <fieldset>
             <legend><h3>Step 1 — Service</h3></legend>
 
@@ -112,7 +106,6 @@
 
           </fieldset>
 
-          <!-- ── STEP 2: SCHEDULE ────────────────────── -->
           <fieldset>
             <legend><h3>Step 2 — Date and Time</h3></legend>
 
@@ -150,7 +143,6 @@
 
           </fieldset>
 
-          <!-- ── STEP 3: PATIENT INFO ───────────────── -->
           <fieldset>
             <legend><h3>Step 3 — Your Information</h3></legend>
 
@@ -165,7 +157,7 @@
 
             <div class="field-group" id="group-age">
               <label for="age">Age <span aria-label="required">*</span></label>
-              <input type="number" id="age" name="age" min=50" max="120" required
+              <input type="number" id="age" name="age" min="50" max="120" required
                      aria-describedby="error-age">
               <span class="error-msg" id="error-age" aria-live="polite" hidden>
                 Age must be between 50 and 120.
@@ -215,7 +207,6 @@
 
           </fieldset>
 
-          <!-- ── STEP 4: EXTRA NOTES ───────────────── -->
           <fieldset>
             <legend><h3>Step 4 — Extra Notes</h3></legend>
 
@@ -237,7 +228,6 @@
 
           </fieldset>
 
-          <!-- ── ACTIONS ────────────────────────────── -->
           <div class="form-actions">
             <button type="submit">Confirm Booking</button>
             <button type="reset">Clear Form</button>
@@ -247,7 +237,6 @@
         <?php endif; ?>
       </section>
 
-      <!-- After-booking info -->
       <section id="booking-info">
         <h2>What Happens Next?</h2>
         <ul>
