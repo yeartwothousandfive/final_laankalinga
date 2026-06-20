@@ -225,7 +225,7 @@ form.addEventListener('submit', (e) => {
 
     // no errors
     document.getElementById('error-summary').hidden = true;
-    submitBooking();
+    form.submit();
 });
 
 // page-level error (for example: "the time slot you chose is no longer available. please pick a different time.")
@@ -252,7 +252,7 @@ function submitBooking() {
 
     // On success, redirect to confirmation page:
     // window.location.href = 'confirmation.html';
-
+    
     alert('Booking submitted! (Integrate real API here.)');
 }
 })();
