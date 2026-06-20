@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <div class="banner-error" id="banner-offline" role="alert" aria-live="assertive" hidden>
     <p>No internet connection. Please check your network and try again.</p>
   </div>
@@ -20,8 +22,9 @@
     <div class="login-wrapper">
 
       <div class="logo-section">
-        <img src="../../images/logo.png" alt="Laan-Kalinga Logo" class="logo">
+        <img src="../../images/logo.png" alt="LaanKalinga Logo" class="logo">
         <h1>Laan-Kalinga</h1>
+        <p class="hero-barangay">Barangay XXX, Quezon City</p>
       </div>
 
       <!-- roles -->
@@ -52,7 +55,8 @@
           <ul class="error-summary__list" id="error-summary-list"></ul>
         </div>
 
-        <form id="login-form" action="#" method="POST" novalidate>
+        <form id="login-form" action="../../php/signin.php" method="POST" novalidate>
+          <input type="hidden" id="role-input" name="role" value="">
 
           <div class="field-group" id="group-email">
             <label for="email">Email address <span aria-label="required">*</span></label>
@@ -109,7 +113,7 @@
 
         </form>
 
-        <p class="register-link" id="register-prompt" hidden>
+        <p class="register-link" id="register-prompt">
           No account yet? <a href="register.html" id="register-link">Register here.</a>
         </p>
 
@@ -124,5 +128,12 @@
 
   <script src="../../js/public/login.js"></script>
 
+  <?php if(isset($_GET['error']) && $_GET['error'] === 'invalid'): ?>
+
+    <script>
+      alert("Invalid email or password");
+    </script>
+
+    <?php endif; ?>
 </body>
 </html>
