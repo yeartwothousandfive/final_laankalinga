@@ -1,8 +1,6 @@
-// VALIDATIONS
-const form = document.getElementById('form-booking');
-
-// 
-const REQUIRED_FIELDS = [
+(() => {
+    const form = document.getElementById('form-booking');
+    const REQUIRED_FIELDS = [
     ['service-type',       'error-service-type',       'Service type'],
     ['visit-type',         'error-visit-type',         'Visit location'],
     ['appointment-date',   'error-appointment-date',   'Appointment date'],
@@ -15,9 +13,64 @@ const REQUIRED_FIELDS = [
     ['reason',             'error-reason',             'Reason for visit'],
 ];
 
+/* stepper navigation */
+
+const STEPS = [1, 2, 3, 4];
+let currentStep = 1;
+
+function goToStep(n) {
+  // hide all steps
+  STEPS.forEach(s => {
+    const fieldset = document.querySelector(`.form-step[data-step="${s}"]`);
+    if (fieldset) fieldset.hidden = s !== n;
+  });
+
+  // update stepper dots
+  STEPS.forEach(s => {
+    const dot = document.querySelector(`.stepper__step[data-step="${s}"]`);
+    if (!dot) return;
+    dot.classList.remove('is-active', 'is-complete');
+    dot.removeAttribute('aria-current');
+    if (s === n) {
+      dot.classList.add('is-active');
+      dot.setAttribute('aria-current', 'step');
+    } else if (s < n) {
+      dot.classList.add('is-complete');
+    }
+  });
+
+  currentStep = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// wire up continue buttons
+document.querySelectorAll('.btn-continue').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const next = parseInt(btn.dataset.next, 10);
+    // run per-step validation here before advancing
+    if (validateStep(currentStep)) goToStep(next);
+  });
+});
+
+// wire up back buttons
+document.querySelectorAll('.btn-back').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prev = parseInt(btn.dataset.prev, 10);
+    goToStep(prev);
+  });
+});
+
+/* Per-step validation (stub — extend with your existing logic) */
+
+function validateStep(step) {
+  // return false and show errors to block navigation
+  // plug in your existing field validation per step here
+  return true;
+}
+
 // set correct dashboard links based on logged-in role
 const userRole = sessionStorage.getItem('userRole'); // 'senior' or 'family'
-const dashboardPath = userRole === 'family' ? '../senior/fam-dashboard.html' : '../senior/dashboard.html';
+const dashboardPath = '../senior/dashboard.html';
 
 const navDashboardLink = document.getElementById('nav-dashboard-link');
 if (navDashboardLink) navDashboardLink.href = dashboardPath;
@@ -80,46 +133,43 @@ function validateDate() {
 
 // blur validations lang, magpapakita inline error messages kapag user leaves a required field empty or with invalid data. 
 // input event will clear the error as soon as they start typing again
-REQUIRED_FIELDS.forEach(([fieldId, errorId]) => {
-    const serviceSelect = document.getElementById('service-type');
-    const serviceOtherGroup = document.getElementById('group-service-other');
-    const serviceOtherInput = document.getElementById('service-other');
+const serviceSelect      = document.getElementById('service-type');
+const serviceOtherGroup  = document.getElementById('group-service-other');
+const serviceOtherInput  = document.getElementById('service-other');
 
-    serviceSelect.addEventListener('change', () => {
+serviceSelect.addEventListener('change', () => {
     const isOther = serviceSelect.value === 'other';
-    serviceOtherGroup.hidden = !isOther;
+    serviceOtherGroup.hidden  = !isOther;
     serviceOtherInput.required = isOther;
     if (!isOther) {
         serviceOtherInput.value = '';
         clearError('service-other', 'error-service-other');
     }
-    });
+});
 
-    serviceOtherInput.addEventListener('blur', () => {
-    if (serviceOtherInput.required && !serviceOtherInput.value.trim()) {
+serviceOtherInput.addEventListener('blur', () => {
+    if (serviceOtherInput.required && !serviceOtherInput.value.trim())
         showError('service-other', 'error-service-other');
-    } else {
+    else
         clearError('service-other', 'error-service-other');
-    }
-    });
+});
 
-    serviceOtherInput.addEventListener('input', () => {
+serviceOtherInput.addEventListener('input', () => {
     if (serviceOtherInput.value.trim()) clearError('service-other', 'error-service-other');
-    });
+});
 
+// per-field blur/input wiring
+REQUIRED_FIELDS.forEach(([fieldId, errorId]) => {
     const el = document.getElementById(fieldId);
     if (!el) return;
     el.addEventListener('blur', () => {
-    if (fieldId === 'age') { validateAge(); return; }
-    if (fieldId === 'appointment-date') { validateDate(); return; }
-    if (!el.value.trim()) {
-        showError(fieldId, errorId);
-    } else {
-        clearError(fieldId, errorId);
-    }
+        if (fieldId === 'age')              { validateAge();  return; }
+        if (fieldId === 'appointment-date') { validateDate(); return; }
+        if (!el.value.trim()) showError(fieldId, errorId);
+        else                  clearError(fieldId, errorId);
     });
     el.addEventListener('input', () => {
-    if (el.value.trim()) clearError(fieldId, errorId);
+        if (el.value.trim()) clearError(fieldId, errorId);
     });
 });
 
@@ -175,7 +225,8 @@ form.addEventListener('submit', (e) => {
 
     // no errors
     document.getElementById('error-summary').hidden = true;
-    submitBooking();
+    form.submit();
+    form.submit();
 });
 
 // page-level error (for example: "the time slot you chose is no longer available. please pick a different time.")
@@ -202,6 +253,8 @@ function submitBooking() {
 
     // On success, redirect to confirmation page:
     // window.location.href = 'confirmation.html';
-
+    
+    
     alert('Booking submitted! (Integrate real API here.)');
 }
+})();
