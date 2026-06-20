@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once __DIR__ . '/../connections/conn.php';
 
@@ -8,12 +7,34 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Method not allowed.');
 }
 
-
-
 function redirect(string $error): never {
     header('Location: ../pages/public/register-family.html?error=' . urlencode($error));
     exit;
 }
+
+// FIX: Added missing POST variable extractions
+$firstName = $_POST['first_name'] ?? '';
+$middleName = $_POST['middle_name'] ?? '';
+$lastName = $_POST['last_name'] ?? '';
+$suffix = $_POST['suffix'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+$phone = $_POST['phone'] ?? '';
+$houseNo = $_POST['house_no'] ?? '';
+$street = $_POST['street'] ?? '';
+$barangay = $_POST['barangay'] ?? '';
+$region = $_POST['region'] ?? '';
+$relationship = $_POST['relationship'] ?? '';
+$altPhone = $_POST['alt_phone'] ?? '';
+$isDecisionMaker = $_POST['is_primary_decision_maker'] ?? 0;
+$preferredContactMethod = $_POST['preferred_contact_method'] ?? '';
+$updateFrequency = $_POST['update_frequency'] ?? '';
+$emergencyNotifications = $_POST['emergency_notifications'] ?? 0;
+$carePlanUpdates = $_POST['care_plan_updates'] ?? 0;
+$ofwStatus = $_POST['ofw_status'] ?? '';
+
+// FIX: Construct the full address from its components
+$address = trim("$houseNo $street $barangay");
 
 if (!$firstName || !$lastName || !$email || !$phone || !$houseNo || !$street || !$barangay) {
     redirect('missing_personal_fields');

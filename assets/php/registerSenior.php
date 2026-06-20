@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once __DIR__ . '/../connections/conn.php';
 
@@ -8,12 +7,33 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Method not allowed.');
 }
 
-
-
 function redirect(string $error): never {
     header('Location: ../pages/public/register-senior.html?error=' . urlencode($error));
     exit;
 }
+
+// FIX: Added missing POST variable extractions
+$firstName = $_POST['first_name'] ?? '';
+$middleName = $_POST['middle_name'] ?? '';
+$lastName = $_POST['last_name'] ?? '';
+$suffix = $_POST['suffix'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
+$confirmPw = $_POST['confirmPw'] ?? '';
+$phone = $_POST['phone'] ?? '';
+$dob = $_POST['dob'] ?? '';
+$gender = $_POST['gender'] ?? '';
+$civilStatus = $_POST['civil_status'] ?? '';
+$houseNo = $_POST['house_no'] ?? '';
+$street = $_POST['street'] ?? '';
+$barangay = $_POST['barangay'] ?? '';
+$region = $_POST['region'] ?? '';
+$philsysId = $_POST['philsys_id'] ?? '';
+$oscaId = $_POST['osca_id'] ?? '';
+$birthplace = $_POST['birthplace'] ?? '';
+
+// FIX: Construct the full address
+$address = trim("$houseNo $street $barangay");
 
 if (!$firstName || !$lastName || !$phone || !$dob || !$gender || !$civilStatus || !$houseNo || !$street || !$barangay) {
     redirect('missing_personal_fields');

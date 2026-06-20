@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 require_once __DIR__. '/../connections/conn.php';
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
@@ -9,7 +7,6 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
     exit("forbidden");
 }
 
-// Added role retrieval with a default fallback
 $role = $_POST['role'] ?? 'user';
 
 // Get Personal Information
@@ -18,20 +15,21 @@ $mName = $_POST['middle_name'] ?? '';
 $lName = $_POST['last_name'] ?? '';
 $suffix = $_POST['suffix'] ?? '';
 $email = $_POST['email'] ?? '';
-$pass = $_POST['password'] ?? ''; // Fixed empty POST key
+$pass = $_POST['password'] ?? ''; 
 $phone = $_POST['phone'] ?? '';
 $address = $_POST['address'] ?? '';
 $region = $_POST['region'] ?? '';
 $philID = $_POST['philsys_id'] ?? '';
 
-// ... [Background, Emergency Contact, Documents, Availability variables remain same as your original] ...
 
-$hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
+// FIX: Validate empty variables BEFORE performing expensive hashing
 if(!$fName || !$lName || !$email || !$address || !$pass){
     header("Location: ../pages/public/createAcc.php?error=invalid");
     exit;
 }
+
+$hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
 $check = $connection->prepare("
     SELECT role_id FROM logindata
@@ -55,7 +53,7 @@ $insert = $connection->prepare("
 
 $insert->bind_param(
     "ssssss",
-    $role, // Now properly defined
+    $role, 
     $email,
     $hashedPassword,
     $fName,
@@ -63,12 +61,10 @@ $insert->bind_param(
     $address
 );
 
-// Execute and check
 if ($insert->execute()) {
     header("Location: ../pages/public/login.php?success=Successfully_Created");
     exit;
 } else {
-    // Moved error log BEFORE exit
     error_log("Error: " . $insert->error); 
     header("Location: ../pages/public/createAcc.php?error=db_error");
     exit;

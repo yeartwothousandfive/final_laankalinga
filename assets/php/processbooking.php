@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 require_once __DIR__. '/../connections/conn.php';
 
 // Auth Check - Ensure user is actually logged in before processing a booking
@@ -15,9 +13,20 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
     exit("forbidden");
 }
 
-$errors = [];
-
-
+// FIX: Added missing POST variable extractions
+$serviceType = $_POST['serviceType'] ?? '';
+$serviceOther = $_POST['serviceOther'] ?? '';
+$visitType = $_POST['visitType'] ?? '';
+$appointmentDate = $_POST['appointmentDate'] ?? '';
+$timeSlot = $_POST['timeSlot'] ?? '';
+$patientName = $_POST['pName'] ?? '';
+$age = $_POST['age'] ?? '';
+$contactNumber = $_POST['contact'] ?? '';
+$emergencyContact = $_POST['emContact'] ?? '';
+$companion = $_POST['companion'] ?? '';
+$preferredContact = $_POST['preferredContact'] ?? '';
+$reason = $_POST['reason'] ?? '';
+$specialNeeds = $_POST['specialNeeds'] ?? '';
 
 if( !$serviceType || !$visitType || !$appointmentDate || !$timeSlot ||
     !$patientName || !$age || !$contactNumber || !$emergencyContact ||
@@ -49,7 +58,6 @@ if ($insert->execute()) {
     header("Location: ../pages/senior/book.php?success=Successfully_Created");
     exit;
 } else {
-    // Moved error logging before exit
     error_log("Booking Error: " . $insert->error); 
     header("Location: ../pages/senior/book.php?error=db_error");
     exit;

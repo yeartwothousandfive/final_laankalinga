@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 require_once __DIR__. '/../connections/conn.php';
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
@@ -13,8 +11,10 @@ $email = $_POST['email'] ?? '';
 $pass = $_POST['password'] ?? '';
 $role = $_POST['role'] ?? '';
 
+// FIX: Gracefully redirect back instead of hard-crashing the page 
 if(!$email || !$pass){
-    die("Missing fields");
+    header("Location: ../pages/public/login.php?error=missing_fields");
+    exit;
 }
 
 // FIND USER 
@@ -41,14 +41,14 @@ if(!password_verify($pass, $user['password_hash'])){
     exit;
 }
 
-// LOGIN SUCCESS (Regenerate session ID to prevent session fixation)
+// LOGIN SUCCESS
 session_regenerate_id(true);
 
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['email'] = $user['email'];
 $_SESSION['role'] = $user['role'];
 
-// REDIRECT BASED ON ROLE (Fixed missing /pages/ directory in paths)
+// REDIRECT BASED ON ROLE
 switch ($user['role']) {
     case 'senior':
         header("Location: ../pages/senior/dashboard.html");
@@ -64,5 +64,4 @@ switch ($user['role']) {
         break;
 }
 exit;
-
 ?>

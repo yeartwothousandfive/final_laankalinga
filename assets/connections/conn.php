@@ -1,6 +1,10 @@
 <?php
-
+// FIX: Added safeguard if the .env file cannot be parsed or goes missing
 $env = parse_ini_file(__DIR__ . '/.env');
+
+if (!$env) {
+    die("Environment configuration error.");
+}
 
 try{
     $connection = mysqli_connect(
